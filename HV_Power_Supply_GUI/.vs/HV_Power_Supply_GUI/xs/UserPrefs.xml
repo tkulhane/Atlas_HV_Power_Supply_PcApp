@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{E3679F86-E8AB-4528-8F89-33021DEA4517}|Default">
+  <MonoDevelop.Ide.ItemProperties.HV__Power__Supply__GUI__ver.1 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="HV_Power_Supply_GUI_ver.1/Form1.cs">
+    <Files>
+      <File FileName="HV_Power_Supply_GUI_ver.1/Form1.cs" Line="13" Column="5" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="HV_Power_Supply_GUI" expanded="True">
+            <Node name="HV_Power_Supply_GUI_ver.1" expanded="True">
+              <Node name="Form1.cs" expanded="True" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
