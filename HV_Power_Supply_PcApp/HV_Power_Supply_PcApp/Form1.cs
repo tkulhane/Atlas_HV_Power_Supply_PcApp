@@ -102,7 +102,7 @@ namespace HV_Power_Supply_GUI_ver._1
                 communication.Close_Serial();
                 label_SerialStatus.Text = "Close";
                 timer_req.Enabled = false;
-                timer_Read.Enabled = false;
+                //timer_Read.Enabled = false;
                 CommunicationControlEnable(true);
                 return;
             }
@@ -141,8 +141,10 @@ namespace HV_Power_Supply_GUI_ver._1
 
                 communication.SendCommand(Communication.eCommandCode.getsetting, 0);
                 communication.SendCommand(Communication.eCommandCode.ip_getsetting, 0);
+
+                timer_req.Interval = 400;
                 timer_req.Enabled = true;
-                timer_Read.Enabled = true;
+
                 CommunicationControlEnable(false);
 
             }
@@ -150,10 +152,14 @@ namespace HV_Power_Supply_GUI_ver._1
             {
                 label_SerialStatus.Text = "Open UDP";
 
+
                 communication.SendCommand(Communication.eCommandCode.ip_store_endpoint, 0);
                 communication.SendCommand(Communication.eCommandCode.getsetting, 0);           
                 communication.SendCommand(Communication.eCommandCode.ip_getsetting, 0);
+
+                timer_req.Interval = 200;
                 timer_req.Enabled = true;
+
                 CommunicationControlEnable(false);
             }
             else 
@@ -326,20 +332,11 @@ namespace HV_Power_Supply_GUI_ver._1
             communication.SendCommand(Communication.eCommandCode.output_CH3, 0);
         }
 
-        private void button_LEDon_Click(object sender, EventArgs e)
-        {
-            communication.SendCommand(Communication.eCommandCode.LED, 1);
-        }
-
-        private void button_LEDoff_Click(object sender, EventArgs e)
-        {
-            communication.SendCommand(Communication.eCommandCode.LED, 0);
-        }
 
         //receive from serial
         private void timer_Read_Tick(object sender, EventArgs e)
         {
-            communication.SerialReadCommand();
+            //communication.SerialReadCommand();
         }
 
         private void ExecuteCommand() 
@@ -524,13 +521,15 @@ namespace HV_Power_Supply_GUI_ver._1
             {
                 label_SerialStatus.BackColor = Color.Red;
             }
+            
+
             communication.SendCommand(Communication.eCommandCode.Connected, 1);
             device_connected = false;
 
 
             communication.SendCommand(Communication.eCommandCode.getallvalues, 0);
             
-            if(timer_setting >= 10) 
+            if(timer_setting >= 5) 
             {
                 communication.SendCommand(Communication.eCommandCode.getsetting, 0);
                 timer_setting = 0;
@@ -575,183 +574,7 @@ namespace HV_Power_Supply_GUI_ver._1
 
 
 
-        //test----------------------------------------------------------------------------
-
-        const int min_volt = 30;
-        int[] error_counter = new int[3];
-        StreamWriter sw;
-
-        int timer_counter = 0;
-        int step_counter = 0;
-        int[] volt_step =       { 30,  100, 100, 100,  200, 200, 250,  300, 300, 300, 300, 300, 300, 300, 300,    400, 400, 400,  450, 450,  500, 500,  0,     30,   350, 350, 350, 350, 350,  0,  };
-        int[] time_step_delay = { 10,  10,  10,  5,    10,  80,  40,   5,   80,  5,   50,  5,   50,  90,  5,      10,  50,  1,    5,   20,   10,  50,   200,   10,   5,   100, 2,   80,  2,    50, };
-        int[] output_step =     { 0,   0,   1,   0,    0,   1,   2,    0,   1,   0,   1,   0,   1,   2,   0,      0,   1,   0,    0,   1,    0,   2,    0,     0,    0,   1,   0,   1,   0,    0,  };
-
-
-        //int[] volt_step =           {30, 300, 300, 300, 300, 300, 300, 0  };
-        //int[] time_step_delay =     {10,  2,   50,  5,   80,  80,  5,   10  };
-        //int[] output_step =         {0,  0,   1,   0,   1,   2,   0,   0  };
-
-        private void checkBox_test_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox_test.Checked)
-            {
-                //test_init();
-                test_start();
-            }
-            else
-            {
-                test_stop();
-            }
-        }
-
-        private void test_start()
-        {
-            error_counter[0] = 0;
-            error_counter[1] = 0;
-            error_counter[2] = 0;
-
-            label_debug.Text = " ";
-
-            checkBox_Enable_CH1.Checked = false;
-            checkBox_Enable_CH2.Checked = false;
-            checkBox_Enable_CH3.Checked = false;
-
-            timer_counter = 0;
-            step_counter = 0;
-
-            numericUpDown_voltage_CH1.Value = min_volt;
-            numericUpDown_voltage_CH2.Value = min_volt;
-            numericUpDown_voltage_CH3.Value = min_volt;
-
-            timer_test.Enabled = true;
-        }
-
-        private void test_stop()
-        {
-            checkBox_Enable_CH1.Checked = false;
-            checkBox_Enable_CH2.Checked = false;
-            checkBox_Enable_CH3.Checked = false;
-
-            numericUpDown_voltage_CH1.Value = min_volt;
-            numericUpDown_voltage_CH2.Value = min_volt;
-            numericUpDown_voltage_CH3.Value = min_volt;
-
-            timer_test.Enabled = false;
-        }
-
-        private void timer_test_Tick(object sender, EventArgs e)
-        {
-            test();
-        }
-
-        private void test_init() 
-        {
-            using (sw = new StreamWriter(@"test.txt",true))
-            {
-                sw.WriteLine("-------------------------------------------------");
-                sw.WriteLine("HV Test     " + DateTime.Now.ToString());
-                sw.WriteLine(" ");
-                sw.Flush();
-            }
-        }
-
-        private void test()
-        {
-            int volt = volt_step[step_counter];
-            int time = time_step_delay[step_counter];
-            int output = output_step[step_counter];
-            
-            //time control
-            if (timer_counter >= time)
-            {
-                timer_counter = 0;
-                step_counter++;
-            }
-            else
-            {
-                timer_counter++;
-            }
-
-            //repeat test circle
-            if (step_counter > volt_step.Length-1) 
-            {
-                step_counter = 0;
-            }
-
-            //enable channels
-            if (volt == 0) 
-            {
-                checkBox_Enable_CH1.Checked = false;
-                checkBox_Enable_CH2.Checked = false;
-                checkBox_Enable_CH3.Checked = false;
-                volt = min_volt;
-            }
-            else 
-            {
-                checkBox_Enable_CH1.Checked = true;
-                checkBox_Enable_CH2.Checked = true;
-                checkBox_Enable_CH3.Checked = true;
-            }
-
-            //output control
-            if (output == 1)
-            {
-                radioButton_positive_CH1.Checked = true;
-                radioButton_positive_CH2.Checked = true;
-                radioButton_positive_CH3.Checked = true;
-                radioButton_negative_CH1.Checked = false;
-                radioButton_negative_CH2.Checked = false;
-                radioButton_negative_CH3.Checked = false;
-
-                button_outputON_CH1_Click(null, null);
-                button_outputON_CH2_Click(null, null);
-                button_outputON_CH3_Click(null, null);
-            }
-            else if(output == 2)
-            {
-                radioButton_positive_CH1.Checked = false;
-                radioButton_positive_CH2.Checked = false;
-                radioButton_positive_CH3.Checked = false;
-                radioButton_negative_CH1.Checked = true;
-                radioButton_negative_CH2.Checked = true;
-                radioButton_negative_CH3.Checked = true;
-
-                button_outputON_CH1_Click(null, null);
-                button_outputON_CH2_Click(null, null);
-                button_outputON_CH3_Click(null, null);
-            }
-            else
-            {
-                button_outputOFF_CH1_Click(null, null);
-                button_outputOFF_CH2_Click(null, null);
-                button_outputOFF_CH3_Click(null, null);
-            }
-            
-
-
-            numericUpDown_voltage_CH1.Value = volt;
-            numericUpDown_voltage_CH2.Value = volt;
-            numericUpDown_voltage_CH3.Value = volt;
-            
-        }
-
-        private void error()
-        {
-
-
-        }
-
-        private void to_file(string text) 
-        {
-            using (sw = new StreamWriter(@"test.txt", true))
-            {
-                sw.WriteLine(text);
-                sw.Flush();
-            }
-        }
-
-        //test----------------------------------------------------------------------------
+      
 
     }
 }

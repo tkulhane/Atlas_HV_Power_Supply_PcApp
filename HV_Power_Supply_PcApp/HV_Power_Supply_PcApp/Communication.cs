@@ -186,6 +186,8 @@ namespace HV_Power_Supply_GUI_ver._1
         };
 
 
+        Timer read_timer = new Timer();
+
         public delegate void efunction();
         efunction ExecuteFunction;
         private SerialPort serialport;
@@ -195,6 +197,8 @@ namespace HV_Power_Supply_GUI_ver._1
         private eCommunicationType CommunicationType = eCommunicationType.non;
 
 
+
+
         public Communication(SerialPort serialport, int UDPPort, efunction f)
         {
             this.serialport = serialport;
@@ -202,6 +206,9 @@ namespace HV_Power_Supply_GUI_ver._1
             udpport = UDPPort;
             CommunicationType = eCommunicationType.non;
             ExecuteFunction = f;
+
+            read_timer.Tick += new System.EventHandler(SerialReadCommand);
+            read_timer.Interval = 10;
         }
 
         public bool Open_UDP(string ipadress)
@@ -244,6 +251,7 @@ namespace HV_Power_Supply_GUI_ver._1
             {
                 serialport.Open();
                 CommunicationType = eCommunicationType.serial;
+                read_timer.Enabled = true;
                 return true;
             }
             catch (Exception ex)
@@ -258,6 +266,7 @@ namespace HV_Power_Supply_GUI_ver._1
         {
             if (!(CommunicationType == eCommunicationType.serial)) return;
 
+            read_timer.Enabled = false;
             serialport.Close();
             CommunicationType = eCommunicationType.non;
         }
@@ -305,12 +314,12 @@ namespace HV_Power_Supply_GUI_ver._1
         byte[] lineBuffer = new byte[128];
         int LineBuf_pos = 0;
 
-        public bool SerialReadCommand()
+        private void SerialReadCommand(object sender, EventArgs e)
         {
             if (!serialport.IsOpen)
             {
                 ReadCommand_Code = eCommandCode.NON;
-                return false;
+                return;
             }
 
 
@@ -328,7 +337,7 @@ namespace HV_Power_Supply_GUI_ver._1
                     ExecuteFunction();
 
                     LineBuf_pos = 0;
-                    return true;
+                    return;
                 }
                 lineBuffer[LineBuf_pos] = b;
                 LineBuf_pos++;
@@ -340,7 +349,7 @@ namespace HV_Power_Supply_GUI_ver._1
             }
 
             ReadCommand_Code = eCommandCode.NON;
-            return false;
+            return;
         }
 
         private void ProcessLine(string line)
@@ -414,9 +423,9 @@ namespace HV_Power_Supply_GUI_ver._1
 
                 return;
             }
-           
 
-            IPEndPoint ipe = new IPEndPoint(IPAddress.Any, 0); //port 0 je pro vsechny
+            IPEndPoint ipe = new IPEndPoint(ip_enpoint, 0);
+            //IPEndPoint ipe = new IPEndPoint(IPAddress.Any, 0); //port 0 je pro vsechny
 
             try 
             {
