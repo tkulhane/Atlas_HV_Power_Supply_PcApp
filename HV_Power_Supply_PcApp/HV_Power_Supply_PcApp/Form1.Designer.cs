@@ -1148,6 +1148,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.button_OFF_CH2.TabIndex = 11;
             this.button_OFF_CH2.Text = "OFF";
             this.button_OFF_CH2.UseVisualStyleBackColor = true;
+            this.button_OFF_CH2.Click += new System.EventHandler(this.button_OFF_CH2_Click);
             // 
             // button_ON_CH2
             // 
@@ -1157,6 +1158,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.button_ON_CH2.TabIndex = 9;
             this.button_ON_CH2.Text = "ON";
             this.button_ON_CH2.UseVisualStyleBackColor = true;
+            this.button_ON_CH2.Click += new System.EventHandler(this.button_ON_CH2_Click);
             // 
             // label_enable_CH2
             // 
@@ -1189,6 +1191,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.button_OFF_CH3.TabIndex = 11;
             this.button_OFF_CH3.Text = "OFF";
             this.button_OFF_CH3.UseVisualStyleBackColor = true;
+            this.button_OFF_CH3.Click += new System.EventHandler(this.button_OFF_CH3_Click);
             // 
             // button_ON_CH3
             // 
@@ -1198,6 +1201,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.button_ON_CH3.TabIndex = 9;
             this.button_ON_CH3.Text = "ON";
             this.button_ON_CH3.UseVisualStyleBackColor = true;
+            this.button_ON_CH3.Click += new System.EventHandler(this.button_ON_CH3_Click);
             // 
             // label_enable_CH3
             // 

@@ -78,7 +78,7 @@ namespace HV_Power_Supply_GUI_ver._1
 
                 case Communication.eCommandCode.enable_CH2:
                     if (communication.ReadCommand_Data > 0) label_enable_CH2.Text = "ON";
-                    else label_enable_CH3.Text = "OFF";
+                    else label_enable_CH2.Text = "OFF";
                     break;
 
                 case Communication.eCommandCode.enable_CH3:
@@ -555,7 +555,5 @@ namespace HV_Power_Supply_GUI_ver._1
             communication.SendCommand(Communication.eCommandCode.enable_CH2, 0);
             communication.SendCommand(Communication.eCommandCode.enable_CH3, 0);
         }
-
-
     }
 }
