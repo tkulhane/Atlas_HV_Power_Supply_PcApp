@@ -31,6 +31,10 @@ namespace HV_Power_Supply_GUI_ver._1
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button_AllOff = new System.Windows.Forms.Button();
+            this.button_AllOn = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.button_ModulSetting = new System.Windows.Forms.Button();
             this.label_debug = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -50,17 +54,12 @@ namespace HV_Power_Supply_GUI_ver._1
             this.button_outputON_CH3 = new System.Windows.Forms.Button();
             this.label_output_CH3 = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.numericUpDown_outvolt_CH3 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown_prevolt_CH3 = new System.Windows.Forms.NumericUpDown();
             this.radioButton_negative_CH3 = new System.Windows.Forms.RadioButton();
             this.radioButton_positive_CH3 = new System.Windows.Forms.RadioButton();
             this.label_info_voltage_CH3 = new System.Windows.Forms.Label();
             this.numericUpDown_voltage_CH3 = new System.Windows.Forms.NumericUpDown();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.label_current_CH3 = new System.Windows.Forms.Label();
-            this.checkBox_Enable_CH3 = new System.Windows.Forms.CheckBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.label_voltage_CH3 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -72,33 +71,23 @@ namespace HV_Power_Supply_GUI_ver._1
             this.button_outputON_CH2 = new System.Windows.Forms.Button();
             this.label_output_CH2 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown_outvolt_CH2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown_prevolt_CH2 = new System.Windows.Forms.NumericUpDown();
             this.radioButton_negative_CH2 = new System.Windows.Forms.RadioButton();
             this.radioButton_positive_CH2 = new System.Windows.Forms.RadioButton();
             this.label_info_voltage_CH2 = new System.Windows.Forms.Label();
             this.numericUpDown_voltage_CH2 = new System.Windows.Forms.NumericUpDown();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label_current_CH2 = new System.Windows.Forms.Label();
-            this.checkBox_Enable_CH2 = new System.Windows.Forms.CheckBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label_voltage_CH2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel_Channel1 = new System.Windows.Forms.Panel();
             this.label_pg_CH1 = new System.Windows.Forms.Label();
             this.label_oc_CH1 = new System.Windows.Forms.Label();
-            this.checkBox_Enable_CH1 = new System.Windows.Forms.CheckBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.button_outputOFF_CH1 = new System.Windows.Forms.Button();
             this.button_outputON_CH1 = new System.Windows.Forms.Button();
             this.label_output_CH1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown_outvolt_CH1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown_prevolt_CH1 = new System.Windows.Forms.NumericUpDown();
             this.radioButton_negative_CH1 = new System.Windows.Forms.RadioButton();
             this.radioButton_positive_CH1 = new System.Windows.Forms.RadioButton();
             this.label_info_voltage_CH1 = new System.Windows.Forms.Label();
@@ -110,50 +99,57 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label1 = new System.Windows.Forms.Label();
             this.XserialPort = new System.IO.Ports.SerialPort(this.components);
             this.timer_req = new System.Windows.Forms.Timer(this.components);
+            this.button_LoadSetAllOn = new System.Windows.Forms.Button();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.button_OFF_CH1 = new System.Windows.Forms.Button();
+            this.button_ON_CH1 = new System.Windows.Forms.Button();
+            this.label_enable_CH1 = new System.Windows.Forms.Label();
             this.bar_current_CH3 = new Seriak.Bar();
             this.bar_voltage_CH3 = new Seriak.Bar();
             this.bar_current_CH2 = new Seriak.Bar();
             this.bar_voltage_CH2 = new Seriak.Bar();
             this.bar_current_CH1 = new Seriak.Bar();
             this.bar_voltage_CH1 = new Seriak.Bar();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.button_OFF_CH2 = new System.Windows.Forms.Button();
+            this.button_ON_CH2 = new System.Windows.Forms.Button();
+            this.label_enable_CH2 = new System.Windows.Forms.Label();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.button_OFF_CH3 = new System.Windows.Forms.Button();
+            this.button_ON_CH3 = new System.Windows.Forms.Button();
+            this.label_enable_CH3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox13.SuspendLayout();
             this.groupBox8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_outvolt_CH3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_prevolt_CH3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_voltage_CH3)).BeginInit();
             this.groupBox9.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_outvolt_CH2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_prevolt_CH2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_voltage_CH2)).BeginInit();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.panel_Channel1.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_outvolt_CH1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_prevolt_CH1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_voltage_CH1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox14.SuspendLayout();
+            this.groupBox15.SuspendLayout();
+            this.groupBox16.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.button_LoadSetAllOn);
+            this.panel1.Controls.Add(this.button_AllOff);
+            this.panel1.Controls.Add(this.button_AllOn);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.button_ModulSetting);
@@ -162,12 +158,62 @@ namespace HV_Power_Supply_GUI_ver._1
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(784, 73);
+            this.panel1.Size = new System.Drawing.Size(824, 73);
             this.panel1.TabIndex = 0;
+            // 
+            // button_AllOff
+            // 
+            this.button_AllOff.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button_AllOff.FlatAppearance.BorderSize = 2;
+            this.button_AllOff.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.button_AllOff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_AllOff.Location = new System.Drawing.Point(740, 11);
+            this.button_AllOff.Margin = new System.Windows.Forms.Padding(2);
+            this.button_AllOff.Name = "button_AllOff";
+            this.button_AllOff.Size = new System.Drawing.Size(67, 54);
+            this.button_AllOff.TabIndex = 25;
+            this.button_AllOff.Text = "ALL OFF";
+            this.button_AllOff.UseVisualStyleBackColor = true;
+            this.button_AllOff.Click += new System.EventHandler(this.button_AllOff_Click);
+            // 
+            // button_AllOn
+            // 
+            this.button_AllOn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button_AllOn.FlatAppearance.BorderSize = 2;
+            this.button_AllOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.button_AllOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_AllOn.Location = new System.Drawing.Point(669, 11);
+            this.button_AllOn.Margin = new System.Windows.Forms.Padding(2);
+            this.button_AllOn.Name = "button_AllOn";
+            this.button_AllOn.Size = new System.Drawing.Size(67, 54);
+            this.button_AllOn.TabIndex = 24;
+            this.button_AllOn.Text = "ALL ON";
+            this.button_AllOn.UseVisualStyleBackColor = true;
+            this.button_AllOn.Click += new System.EventHandler(this.button_AllOn_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(358, 39);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(86, 26);
+            this.button2.TabIndex = 23;
+            this.button2.Text = "Save Setting";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(358, 11);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(86, 26);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Load Setting";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // button_ModulSetting
             // 
-            this.button_ModulSetting.Location = new System.Drawing.Point(459, 11);
+            this.button_ModulSetting.Location = new System.Drawing.Point(448, 11);
             this.button_ModulSetting.Margin = new System.Windows.Forms.Padding(2);
             this.button_ModulSetting.Name = "button_ModulSetting";
             this.button_ModulSetting.Size = new System.Drawing.Size(89, 26);
@@ -182,7 +228,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label_debug.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label_debug.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label_debug.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label_debug.Location = new System.Drawing.Point(459, 39);
+            this.label_debug.Location = new System.Drawing.Point(448, 39);
             this.label_debug.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_debug.Name = "label_debug";
             this.label_debug.Size = new System.Drawing.Size(89, 24);
@@ -201,7 +247,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(356, 73);
+            this.groupBox2.Size = new System.Drawing.Size(344, 73);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Communication";
@@ -239,7 +285,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // label_SerialStatus
             // 
             this.label_SerialStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_SerialStatus.Location = new System.Drawing.Point(241, 23);
+            this.label_SerialStatus.Location = new System.Drawing.Point(231, 23);
             this.label_SerialStatus.Name = "label_SerialStatus";
             this.label_SerialStatus.Size = new System.Drawing.Size(43, 31);
             this.label_SerialStatus.TabIndex = 19;
@@ -248,7 +294,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // button_OpenClose
             // 
-            this.button_OpenClose.Location = new System.Drawing.Point(289, 19);
+            this.button_OpenClose.Location = new System.Drawing.Point(279, 19);
             this.button_OpenClose.Margin = new System.Windows.Forms.Padding(2);
             this.button_OpenClose.Name = "button_OpenClose";
             this.button_OpenClose.Size = new System.Drawing.Size(56, 40);
@@ -291,33 +337,33 @@ namespace HV_Power_Supply_GUI_ver._1
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 538);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(824, 564);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.groupBox16);
             this.panel3.Controls.Add(this.label_pg_CH3);
             this.panel3.Controls.Add(this.label_oc_CH3);
             this.panel3.Controls.Add(this.groupBox13);
             this.panel3.Controls.Add(this.groupBox8);
             this.panel3.Controls.Add(this.groupBox9);
-            this.panel3.Controls.Add(this.checkBox_Enable_CH3);
             this.panel3.Controls.Add(this.groupBox10);
             this.panel3.Controls.Add(this.label11);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panel3.Location = new System.Drawing.Point(532, 10);
+            this.panel3.Location = new System.Drawing.Point(558, 10);
             this.panel3.Margin = new System.Windows.Forms.Padding(10);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(242, 518);
+            this.panel3.Size = new System.Drawing.Size(256, 544);
             this.panel3.TabIndex = 2;
             // 
             // label_pg_CH3
             // 
             this.label_pg_CH3.AutoSize = true;
             this.label_pg_CH3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_pg_CH3.Location = new System.Drawing.Point(168, 27);
+            this.label_pg_CH3.Location = new System.Drawing.Point(215, 45);
             this.label_pg_CH3.Name = "label_pg_CH3";
             this.label_pg_CH3.Size = new System.Drawing.Size(24, 15);
             this.label_pg_CH3.TabIndex = 13;
@@ -327,7 +373,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             this.label_oc_CH3.AutoSize = true;
             this.label_oc_CH3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_oc_CH3.Location = new System.Drawing.Point(198, 27);
+            this.label_oc_CH3.Location = new System.Drawing.Point(215, 60);
             this.label_oc_CH3.Name = "label_oc_CH3";
             this.label_oc_CH3.Size = new System.Drawing.Size(24, 15);
             this.label_oc_CH3.TabIndex = 12;
@@ -339,7 +385,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox13.Controls.Add(this.button_outputON_CH3);
             this.groupBox13.Controls.Add(this.label_output_CH3);
             this.groupBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox13.Location = new System.Drawing.Point(16, 424);
+            this.groupBox13.Location = new System.Drawing.Point(25, 453);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Size = new System.Drawing.Size(206, 77);
             this.groupBox13.TabIndex = 7;
@@ -374,79 +420,26 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label_output_CH3.Name = "label_output_CH3";
             this.label_output_CH3.Size = new System.Drawing.Size(61, 20);
             this.label_output_CH3.TabIndex = 10;
-            this.label_output_CH3.Text = "Output ";
             this.label_output_CH3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.label6);
-            this.groupBox8.Controls.Add(this.label8);
-            this.groupBox8.Controls.Add(this.numericUpDown_outvolt_CH3);
-            this.groupBox8.Controls.Add(this.numericUpDown_prevolt_CH3);
             this.groupBox8.Controls.Add(this.radioButton_negative_CH3);
             this.groupBox8.Controls.Add(this.radioButton_positive_CH3);
             this.groupBox8.Controls.Add(this.label_info_voltage_CH3);
             this.groupBox8.Controls.Add(this.numericUpDown_voltage_CH3);
             this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox8.Location = new System.Drawing.Point(16, 266);
+            this.groupBox8.Location = new System.Drawing.Point(25, 300);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(206, 146);
             this.groupBox8.TabIndex = 5;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Setting:";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(117, 97);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(50, 13);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Out Reg:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.Location = new System.Drawing.Point(19, 97);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 13);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Pre Reg:";
-            // 
-            // numericUpDown_outvolt_CH3
-            // 
-            this.numericUpDown_outvolt_CH3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown_outvolt_CH3.Location = new System.Drawing.Point(120, 112);
-            this.numericUpDown_outvolt_CH3.Maximum = new decimal(new int[] {
-            4095,
-            0,
-            0,
-            0});
-            this.numericUpDown_outvolt_CH3.Name = "numericUpDown_outvolt_CH3";
-            this.numericUpDown_outvolt_CH3.Size = new System.Drawing.Size(63, 26);
-            this.numericUpDown_outvolt_CH3.TabIndex = 9;
-            this.numericUpDown_outvolt_CH3.ValueChanged += new System.EventHandler(this.numericUpDown_outvolt_CH3_ValueChanged);
-            // 
-            // numericUpDown_prevolt_CH3
-            // 
-            this.numericUpDown_prevolt_CH3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown_prevolt_CH3.Location = new System.Drawing.Point(22, 112);
-            this.numericUpDown_prevolt_CH3.Maximum = new decimal(new int[] {
-            4095,
-            0,
-            0,
-            0});
-            this.numericUpDown_prevolt_CH3.Name = "numericUpDown_prevolt_CH3";
-            this.numericUpDown_prevolt_CH3.Size = new System.Drawing.Size(63, 26);
-            this.numericUpDown_prevolt_CH3.TabIndex = 8;
-            this.numericUpDown_prevolt_CH3.ValueChanged += new System.EventHandler(this.numericUpDown_prevolt_CH3_ValueChanged);
-            // 
             // radioButton_negative_CH3
             // 
             this.radioButton_negative_CH3.AutoSize = true;
-            this.radioButton_negative_CH3.Location = new System.Drawing.Point(117, 70);
+            this.radioButton_negative_CH3.Location = new System.Drawing.Point(117, 99);
             this.radioButton_negative_CH3.Name = "radioButton_negative_CH3";
             this.radioButton_negative_CH3.Size = new System.Drawing.Size(81, 20);
             this.radioButton_negative_CH3.TabIndex = 5;
@@ -458,7 +451,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             this.radioButton_positive_CH3.AutoSize = true;
             this.radioButton_positive_CH3.Checked = true;
-            this.radioButton_positive_CH3.Location = new System.Drawing.Point(12, 70);
+            this.radioButton_positive_CH3.Location = new System.Drawing.Point(12, 99);
             this.radioButton_positive_CH3.Name = "radioButton_positive_CH3";
             this.radioButton_positive_CH3.Size = new System.Drawing.Size(74, 20);
             this.radioButton_positive_CH3.TabIndex = 4;
@@ -471,7 +464,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             this.label_info_voltage_CH3.AutoSize = true;
             this.label_info_voltage_CH3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_info_voltage_CH3.Location = new System.Drawing.Point(16, 37);
+            this.label_info_voltage_CH3.Location = new System.Drawing.Point(16, 55);
             this.label_info_voltage_CH3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_info_voltage_CH3.Name = "label_info_voltage_CH3";
             this.label_info_voltage_CH3.Size = new System.Drawing.Size(68, 20);
@@ -482,7 +475,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // numericUpDown_voltage_CH3
             // 
             this.numericUpDown_voltage_CH3.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown_voltage_CH3.Location = new System.Drawing.Point(101, 20);
+            this.numericUpDown_voltage_CH3.Location = new System.Drawing.Point(101, 38);
             this.numericUpDown_voltage_CH3.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown_voltage_CH3.Maximum = new decimal(new int[] {
             550,
@@ -504,7 +497,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox9.Controls.Add(this.bar_current_CH3);
             this.groupBox9.Controls.Add(this.label_current_CH3);
             this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox9.Location = new System.Drawing.Point(16, 163);
+            this.groupBox9.Location = new System.Drawing.Point(25, 197);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(206, 97);
             this.groupBox9.TabIndex = 4;
@@ -525,23 +518,12 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label_current_CH3.Text = "12.2 uA";
             this.label_current_CH3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // checkBox_Enable_CH3
-            // 
-            this.checkBox_Enable_CH3.AutoSize = true;
-            this.checkBox_Enable_CH3.Location = new System.Drawing.Point(20, 25);
-            this.checkBox_Enable_CH3.Name = "checkBox_Enable_CH3";
-            this.checkBox_Enable_CH3.Size = new System.Drawing.Size(59, 17);
-            this.checkBox_Enable_CH3.TabIndex = 3;
-            this.checkBox_Enable_CH3.Text = "Enable";
-            this.checkBox_Enable_CH3.UseVisualStyleBackColor = true;
-            this.checkBox_Enable_CH3.CheckedChanged += new System.EventHandler(this.checkBox_Enable_CH3_CheckedChanged);
-            // 
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.bar_voltage_CH3);
             this.groupBox10.Controls.Add(this.label_voltage_CH3);
             this.groupBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox10.Location = new System.Drawing.Point(16, 61);
+            this.groupBox10.Location = new System.Drawing.Point(25, 95);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(206, 97);
             this.groupBox10.TabIndex = 1;
@@ -569,7 +551,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label11.Location = new System.Drawing.Point(0, 0);
             this.label11.Margin = new System.Windows.Forms.Padding(3);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(240, 20);
+            this.label11.Size = new System.Drawing.Size(254, 20);
             this.label11.TabIndex = 0;
             this.label11.Text = "Channel 3";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -577,27 +559,27 @@ namespace HV_Power_Supply_GUI_ver._1
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.groupBox15);
             this.panel2.Controls.Add(this.label_pg_CH2);
             this.panel2.Controls.Add(this.label_oc_CH2);
             this.panel2.Controls.Add(this.groupBox12);
             this.panel2.Controls.Add(this.groupBox5);
             this.panel2.Controls.Add(this.groupBox6);
-            this.panel2.Controls.Add(this.checkBox_Enable_CH2);
             this.panel2.Controls.Add(this.groupBox7);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panel2.Location = new System.Drawing.Point(271, 10);
+            this.panel2.Location = new System.Drawing.Point(284, 10);
             this.panel2.Margin = new System.Windows.Forms.Padding(10);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(241, 518);
+            this.panel2.Size = new System.Drawing.Size(254, 544);
             this.panel2.TabIndex = 1;
             // 
             // label_pg_CH2
             // 
             this.label_pg_CH2.AutoSize = true;
             this.label_pg_CH2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_pg_CH2.Location = new System.Drawing.Point(168, 28);
+            this.label_pg_CH2.Location = new System.Drawing.Point(215, 46);
             this.label_pg_CH2.Name = "label_pg_CH2";
             this.label_pg_CH2.Size = new System.Drawing.Size(24, 15);
             this.label_pg_CH2.TabIndex = 11;
@@ -607,7 +589,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             this.label_oc_CH2.AutoSize = true;
             this.label_oc_CH2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_oc_CH2.Location = new System.Drawing.Point(198, 28);
+            this.label_oc_CH2.Location = new System.Drawing.Point(215, 61);
             this.label_oc_CH2.Name = "label_oc_CH2";
             this.label_oc_CH2.Size = new System.Drawing.Size(24, 15);
             this.label_oc_CH2.TabIndex = 10;
@@ -619,7 +601,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox12.Controls.Add(this.button_outputON_CH2);
             this.groupBox12.Controls.Add(this.label_output_CH2);
             this.groupBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox12.Location = new System.Drawing.Point(16, 424);
+            this.groupBox12.Location = new System.Drawing.Point(25, 453);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Size = new System.Drawing.Size(206, 77);
             this.groupBox12.TabIndex = 7;
@@ -654,79 +636,26 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label_output_CH2.Name = "label_output_CH2";
             this.label_output_CH2.Size = new System.Drawing.Size(61, 20);
             this.label_output_CH2.TabIndex = 10;
-            this.label_output_CH2.Text = "Output ";
             this.label_output_CH2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.label4);
-            this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Controls.Add(this.numericUpDown_outvolt_CH2);
-            this.groupBox5.Controls.Add(this.numericUpDown_prevolt_CH2);
             this.groupBox5.Controls.Add(this.radioButton_negative_CH2);
             this.groupBox5.Controls.Add(this.radioButton_positive_CH2);
             this.groupBox5.Controls.Add(this.label_info_voltage_CH2);
             this.groupBox5.Controls.Add(this.numericUpDown_voltage_CH2);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox5.Location = new System.Drawing.Point(16, 266);
+            this.groupBox5.Location = new System.Drawing.Point(25, 300);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(206, 146);
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Setting:";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(117, 96);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Out Reg:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(19, 96);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Pre Reg:";
-            // 
-            // numericUpDown_outvolt_CH2
-            // 
-            this.numericUpDown_outvolt_CH2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown_outvolt_CH2.Location = new System.Drawing.Point(120, 112);
-            this.numericUpDown_outvolt_CH2.Maximum = new decimal(new int[] {
-            4095,
-            0,
-            0,
-            0});
-            this.numericUpDown_outvolt_CH2.Name = "numericUpDown_outvolt_CH2";
-            this.numericUpDown_outvolt_CH2.Size = new System.Drawing.Size(63, 26);
-            this.numericUpDown_outvolt_CH2.TabIndex = 9;
-            this.numericUpDown_outvolt_CH2.ValueChanged += new System.EventHandler(this.numericUpDown_outvolt_CH2_ValueChanged);
-            // 
-            // numericUpDown_prevolt_CH2
-            // 
-            this.numericUpDown_prevolt_CH2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown_prevolt_CH2.Location = new System.Drawing.Point(22, 112);
-            this.numericUpDown_prevolt_CH2.Maximum = new decimal(new int[] {
-            4095,
-            0,
-            0,
-            0});
-            this.numericUpDown_prevolt_CH2.Name = "numericUpDown_prevolt_CH2";
-            this.numericUpDown_prevolt_CH2.Size = new System.Drawing.Size(63, 26);
-            this.numericUpDown_prevolt_CH2.TabIndex = 8;
-            this.numericUpDown_prevolt_CH2.ValueChanged += new System.EventHandler(this.numericUpDown_prevolt_CH2_ValueChanged);
-            // 
             // radioButton_negative_CH2
             // 
             this.radioButton_negative_CH2.AutoSize = true;
-            this.radioButton_negative_CH2.Location = new System.Drawing.Point(117, 70);
+            this.radioButton_negative_CH2.Location = new System.Drawing.Point(117, 99);
             this.radioButton_negative_CH2.Name = "radioButton_negative_CH2";
             this.radioButton_negative_CH2.Size = new System.Drawing.Size(81, 20);
             this.radioButton_negative_CH2.TabIndex = 5;
@@ -738,7 +667,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             this.radioButton_positive_CH2.AutoSize = true;
             this.radioButton_positive_CH2.Checked = true;
-            this.radioButton_positive_CH2.Location = new System.Drawing.Point(12, 70);
+            this.radioButton_positive_CH2.Location = new System.Drawing.Point(12, 99);
             this.radioButton_positive_CH2.Name = "radioButton_positive_CH2";
             this.radioButton_positive_CH2.Size = new System.Drawing.Size(74, 20);
             this.radioButton_positive_CH2.TabIndex = 4;
@@ -751,7 +680,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             this.label_info_voltage_CH2.AutoSize = true;
             this.label_info_voltage_CH2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_info_voltage_CH2.Location = new System.Drawing.Point(16, 37);
+            this.label_info_voltage_CH2.Location = new System.Drawing.Point(16, 55);
             this.label_info_voltage_CH2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_info_voltage_CH2.Name = "label_info_voltage_CH2";
             this.label_info_voltage_CH2.Size = new System.Drawing.Size(68, 20);
@@ -762,7 +691,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // numericUpDown_voltage_CH2
             // 
             this.numericUpDown_voltage_CH2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown_voltage_CH2.Location = new System.Drawing.Point(101, 20);
+            this.numericUpDown_voltage_CH2.Location = new System.Drawing.Point(101, 38);
             this.numericUpDown_voltage_CH2.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown_voltage_CH2.Maximum = new decimal(new int[] {
             550,
@@ -784,7 +713,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox6.Controls.Add(this.bar_current_CH2);
             this.groupBox6.Controls.Add(this.label_current_CH2);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox6.Location = new System.Drawing.Point(16, 163);
+            this.groupBox6.Location = new System.Drawing.Point(25, 197);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(206, 97);
             this.groupBox6.TabIndex = 4;
@@ -805,23 +734,12 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label_current_CH2.Text = "12.2 uA";
             this.label_current_CH2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // checkBox_Enable_CH2
-            // 
-            this.checkBox_Enable_CH2.AutoSize = true;
-            this.checkBox_Enable_CH2.Location = new System.Drawing.Point(20, 25);
-            this.checkBox_Enable_CH2.Name = "checkBox_Enable_CH2";
-            this.checkBox_Enable_CH2.Size = new System.Drawing.Size(59, 17);
-            this.checkBox_Enable_CH2.TabIndex = 3;
-            this.checkBox_Enable_CH2.Text = "Enable";
-            this.checkBox_Enable_CH2.UseVisualStyleBackColor = true;
-            this.checkBox_Enable_CH2.CheckedChanged += new System.EventHandler(this.checkBox_Enable_CH2_CheckedChanged);
-            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.bar_voltage_CH2);
             this.groupBox7.Controls.Add(this.label_voltage_CH2);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox7.Location = new System.Drawing.Point(16, 61);
+            this.groupBox7.Location = new System.Drawing.Point(25, 95);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(206, 97);
             this.groupBox7.TabIndex = 1;
@@ -849,7 +767,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label7.Location = new System.Drawing.Point(0, 0);
             this.label7.Margin = new System.Windows.Forms.Padding(3);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(239, 20);
+            this.label7.Size = new System.Drawing.Size(252, 20);
             this.label7.TabIndex = 0;
             this.label7.Text = "Channel 2";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -857,9 +775,9 @@ namespace HV_Power_Supply_GUI_ver._1
             // panel_Channel1
             // 
             this.panel_Channel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_Channel1.Controls.Add(this.groupBox14);
             this.panel_Channel1.Controls.Add(this.label_pg_CH1);
             this.panel_Channel1.Controls.Add(this.label_oc_CH1);
-            this.panel_Channel1.Controls.Add(this.checkBox_Enable_CH1);
             this.panel_Channel1.Controls.Add(this.groupBox11);
             this.panel_Channel1.Controls.Add(this.groupBox4);
             this.panel_Channel1.Controls.Add(this.groupBox3);
@@ -870,14 +788,14 @@ namespace HV_Power_Supply_GUI_ver._1
             this.panel_Channel1.Location = new System.Drawing.Point(10, 10);
             this.panel_Channel1.Margin = new System.Windows.Forms.Padding(10);
             this.panel_Channel1.Name = "panel_Channel1";
-            this.panel_Channel1.Size = new System.Drawing.Size(241, 518);
+            this.panel_Channel1.Size = new System.Drawing.Size(254, 544);
             this.panel_Channel1.TabIndex = 0;
             // 
             // label_pg_CH1
             // 
             this.label_pg_CH1.AutoSize = true;
             this.label_pg_CH1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_pg_CH1.Location = new System.Drawing.Point(168, 28);
+            this.label_pg_CH1.Location = new System.Drawing.Point(215, 46);
             this.label_pg_CH1.Name = "label_pg_CH1";
             this.label_pg_CH1.Size = new System.Drawing.Size(24, 15);
             this.label_pg_CH1.TabIndex = 9;
@@ -887,22 +805,11 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             this.label_oc_CH1.AutoSize = true;
             this.label_oc_CH1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label_oc_CH1.Location = new System.Drawing.Point(198, 28);
+            this.label_oc_CH1.Location = new System.Drawing.Point(215, 61);
             this.label_oc_CH1.Name = "label_oc_CH1";
             this.label_oc_CH1.Size = new System.Drawing.Size(24, 15);
             this.label_oc_CH1.TabIndex = 8;
             this.label_oc_CH1.Text = "OC";
-            // 
-            // checkBox_Enable_CH1
-            // 
-            this.checkBox_Enable_CH1.AutoSize = true;
-            this.checkBox_Enable_CH1.Location = new System.Drawing.Point(17, 26);
-            this.checkBox_Enable_CH1.Name = "checkBox_Enable_CH1";
-            this.checkBox_Enable_CH1.Size = new System.Drawing.Size(59, 17);
-            this.checkBox_Enable_CH1.TabIndex = 7;
-            this.checkBox_Enable_CH1.Text = "Enable";
-            this.checkBox_Enable_CH1.UseVisualStyleBackColor = true;
-            this.checkBox_Enable_CH1.CheckedChanged += new System.EventHandler(this.checkBox_Enable_CH1_CheckedChanged);
             // 
             // groupBox11
             // 
@@ -910,7 +817,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox11.Controls.Add(this.button_outputON_CH1);
             this.groupBox11.Controls.Add(this.label_output_CH1);
             this.groupBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox11.Location = new System.Drawing.Point(17, 424);
+            this.groupBox11.Location = new System.Drawing.Point(26, 453);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Size = new System.Drawing.Size(206, 77);
             this.groupBox11.TabIndex = 6;
@@ -945,79 +852,26 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label_output_CH1.Name = "label_output_CH1";
             this.label_output_CH1.Size = new System.Drawing.Size(61, 20);
             this.label_output_CH1.TabIndex = 10;
-            this.label_output_CH1.Text = "Output ";
             this.label_output_CH1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Controls.Add(this.numericUpDown_outvolt_CH1);
-            this.groupBox4.Controls.Add(this.numericUpDown_prevolt_CH1);
             this.groupBox4.Controls.Add(this.radioButton_negative_CH1);
             this.groupBox4.Controls.Add(this.radioButton_positive_CH1);
             this.groupBox4.Controls.Add(this.label_info_voltage_CH1);
             this.groupBox4.Controls.Add(this.numericUpDown_voltage_CH1);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox4.Location = new System.Drawing.Point(16, 266);
+            this.groupBox4.Location = new System.Drawing.Point(25, 300);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(206, 146);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Setting:";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(117, 97);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Out Reg:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(19, 97);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Pre Reg:";
-            // 
-            // numericUpDown_outvolt_CH1
-            // 
-            this.numericUpDown_outvolt_CH1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown_outvolt_CH1.Location = new System.Drawing.Point(120, 112);
-            this.numericUpDown_outvolt_CH1.Maximum = new decimal(new int[] {
-            4095,
-            0,
-            0,
-            0});
-            this.numericUpDown_outvolt_CH1.Name = "numericUpDown_outvolt_CH1";
-            this.numericUpDown_outvolt_CH1.Size = new System.Drawing.Size(63, 26);
-            this.numericUpDown_outvolt_CH1.TabIndex = 7;
-            this.numericUpDown_outvolt_CH1.ValueChanged += new System.EventHandler(this.numericUpDown_outvolt_CH1_ValueChanged);
-            // 
-            // numericUpDown_prevolt_CH1
-            // 
-            this.numericUpDown_prevolt_CH1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown_prevolt_CH1.Location = new System.Drawing.Point(22, 112);
-            this.numericUpDown_prevolt_CH1.Maximum = new decimal(new int[] {
-            4095,
-            0,
-            0,
-            0});
-            this.numericUpDown_prevolt_CH1.Name = "numericUpDown_prevolt_CH1";
-            this.numericUpDown_prevolt_CH1.Size = new System.Drawing.Size(63, 26);
-            this.numericUpDown_prevolt_CH1.TabIndex = 6;
-            this.numericUpDown_prevolt_CH1.ValueChanged += new System.EventHandler(this.numericUpDown_prevolt_CH1_ValueChanged);
-            // 
             // radioButton_negative_CH1
             // 
             this.radioButton_negative_CH1.AutoSize = true;
-            this.radioButton_negative_CH1.Location = new System.Drawing.Point(117, 70);
+            this.radioButton_negative_CH1.Location = new System.Drawing.Point(117, 99);
             this.radioButton_negative_CH1.Name = "radioButton_negative_CH1";
             this.radioButton_negative_CH1.Size = new System.Drawing.Size(81, 20);
             this.radioButton_negative_CH1.TabIndex = 5;
@@ -1029,7 +883,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             this.radioButton_positive_CH1.AutoSize = true;
             this.radioButton_positive_CH1.Checked = true;
-            this.radioButton_positive_CH1.Location = new System.Drawing.Point(12, 70);
+            this.radioButton_positive_CH1.Location = new System.Drawing.Point(12, 99);
             this.radioButton_positive_CH1.Name = "radioButton_positive_CH1";
             this.radioButton_positive_CH1.Size = new System.Drawing.Size(74, 20);
             this.radioButton_positive_CH1.TabIndex = 4;
@@ -1042,7 +896,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             this.label_info_voltage_CH1.AutoSize = true;
             this.label_info_voltage_CH1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_info_voltage_CH1.Location = new System.Drawing.Point(16, 37);
+            this.label_info_voltage_CH1.Location = new System.Drawing.Point(16, 55);
             this.label_info_voltage_CH1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_info_voltage_CH1.Name = "label_info_voltage_CH1";
             this.label_info_voltage_CH1.Size = new System.Drawing.Size(68, 20);
@@ -1053,7 +907,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // numericUpDown_voltage_CH1
             // 
             this.numericUpDown_voltage_CH1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDown_voltage_CH1.Location = new System.Drawing.Point(101, 20);
+            this.numericUpDown_voltage_CH1.Location = new System.Drawing.Point(101, 38);
             this.numericUpDown_voltage_CH1.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown_voltage_CH1.Maximum = new decimal(new int[] {
             550,
@@ -1075,7 +929,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox3.Controls.Add(this.bar_current_CH1);
             this.groupBox3.Controls.Add(this.label_current_CH1);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox3.Location = new System.Drawing.Point(16, 163);
+            this.groupBox3.Location = new System.Drawing.Point(25, 197);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(206, 97);
             this.groupBox3.TabIndex = 4;
@@ -1101,7 +955,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox1.Controls.Add(this.bar_voltage_CH1);
             this.groupBox1.Controls.Add(this.label_voltage_CH1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBox1.Location = new System.Drawing.Point(16, 61);
+            this.groupBox1.Location = new System.Drawing.Point(25, 95);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(206, 97);
             this.groupBox1.TabIndex = 1;
@@ -1129,7 +983,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(239, 20);
+            this.label1.Size = new System.Drawing.Size(252, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Channel 1";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1142,6 +996,64 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             this.timer_req.Interval = 200;
             this.timer_req.Tick += new System.EventHandler(this.timer_req_Tick);
+            // 
+            // button_LoadSetAllOn
+            // 
+            this.button_LoadSetAllOn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button_LoadSetAllOn.FlatAppearance.BorderSize = 2;
+            this.button_LoadSetAllOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.button_LoadSetAllOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_LoadSetAllOn.Location = new System.Drawing.Point(583, 11);
+            this.button_LoadSetAllOn.Margin = new System.Windows.Forms.Padding(2);
+            this.button_LoadSetAllOn.Name = "button_LoadSetAllOn";
+            this.button_LoadSetAllOn.Size = new System.Drawing.Size(82, 54);
+            this.button_LoadSetAllOn.TabIndex = 26;
+            this.button_LoadSetAllOn.Text = "Load Set ALL ON ";
+            this.button_LoadSetAllOn.UseVisualStyleBackColor = true;
+            this.button_LoadSetAllOn.Click += new System.EventHandler(this.button_LoadSetAllOn_Click);
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.button_OFF_CH1);
+            this.groupBox14.Controls.Add(this.button_ON_CH1);
+            this.groupBox14.Controls.Add(this.label_enable_CH1);
+            this.groupBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.groupBox14.Location = new System.Drawing.Point(25, 26);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(181, 63);
+            this.groupBox14.TabIndex = 10;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Enable:";
+            // 
+            // button_OFF_CH1
+            // 
+            this.button_OFF_CH1.Location = new System.Drawing.Point(119, 20);
+            this.button_OFF_CH1.Name = "button_OFF_CH1";
+            this.button_OFF_CH1.Size = new System.Drawing.Size(55, 36);
+            this.button_OFF_CH1.TabIndex = 11;
+            this.button_OFF_CH1.Text = "OFF";
+            this.button_OFF_CH1.UseVisualStyleBackColor = true;
+            this.button_OFF_CH1.Click += new System.EventHandler(this.button_OFF_CH1_Click);
+            // 
+            // button_ON_CH1
+            // 
+            this.button_ON_CH1.Location = new System.Drawing.Point(7, 20);
+            this.button_ON_CH1.Name = "button_ON_CH1";
+            this.button_ON_CH1.Size = new System.Drawing.Size(55, 36);
+            this.button_ON_CH1.TabIndex = 9;
+            this.button_ON_CH1.Text = "ON";
+            this.button_ON_CH1.UseVisualStyleBackColor = true;
+            this.button_ON_CH1.Click += new System.EventHandler(this.button_ON_CH1_Click);
+            // 
+            // label_enable_CH1
+            // 
+            this.label_enable_CH1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_enable_CH1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_enable_CH1.Location = new System.Drawing.Point(68, 29);
+            this.label_enable_CH1.Name = "label_enable_CH1";
+            this.label_enable_CH1.Size = new System.Drawing.Size(45, 20);
+            this.label_enable_CH1.TabIndex = 10;
+            this.label_enable_CH1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // bar_current_CH3
             // 
@@ -1215,64 +1127,98 @@ namespace HV_Power_Supply_GUI_ver._1
             this.bar_voltage_CH1.Text = "bar1";
             this.bar_voltage_CH1.value = 50;
             // 
-            // button1
+            // groupBox15
             // 
-            this.button1.Location = new System.Drawing.Point(369, 11);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 26);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Load Setting";
-            this.button1.UseVisualStyleBackColor = true;
+            this.groupBox15.Controls.Add(this.button_OFF_CH2);
+            this.groupBox15.Controls.Add(this.button_ON_CH2);
+            this.groupBox15.Controls.Add(this.label_enable_CH2);
+            this.groupBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.groupBox15.Location = new System.Drawing.Point(25, 26);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(181, 63);
+            this.groupBox15.TabIndex = 12;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "Enable:";
             // 
-            // button2
+            // button_OFF_CH2
             // 
-            this.button2.Location = new System.Drawing.Point(369, 39);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(86, 26);
-            this.button2.TabIndex = 23;
-            this.button2.Text = "Save Setting";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button_OFF_CH2.Location = new System.Drawing.Point(119, 20);
+            this.button_OFF_CH2.Name = "button_OFF_CH2";
+            this.button_OFF_CH2.Size = new System.Drawing.Size(55, 36);
+            this.button_OFF_CH2.TabIndex = 11;
+            this.button_OFF_CH2.Text = "OFF";
+            this.button_OFF_CH2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // button_ON_CH2
             // 
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button3.FlatAppearance.BorderSize = 2;
-            this.button3.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button3.Location = new System.Drawing.Point(635, 11);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(67, 54);
-            this.button3.TabIndex = 24;
-            this.button3.Text = "ALL ON";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button_ON_CH2.Location = new System.Drawing.Point(7, 20);
+            this.button_ON_CH2.Name = "button_ON_CH2";
+            this.button_ON_CH2.Size = new System.Drawing.Size(55, 36);
+            this.button_ON_CH2.TabIndex = 9;
+            this.button_ON_CH2.Text = "ON";
+            this.button_ON_CH2.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // label_enable_CH2
             // 
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button4.FlatAppearance.BorderSize = 2;
-            this.button4.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button4.Location = new System.Drawing.Point(706, 11);
-            this.button4.Margin = new System.Windows.Forms.Padding(2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(67, 54);
-            this.button4.TabIndex = 25;
-            this.button4.Text = "ALL OFF";
-            this.button4.UseVisualStyleBackColor = true;
+            this.label_enable_CH2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_enable_CH2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_enable_CH2.Location = new System.Drawing.Point(68, 29);
+            this.label_enable_CH2.Name = "label_enable_CH2";
+            this.label_enable_CH2.Size = new System.Drawing.Size(45, 20);
+            this.label_enable_CH2.TabIndex = 10;
+            this.label_enable_CH2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox16
+            // 
+            this.groupBox16.Controls.Add(this.button_OFF_CH3);
+            this.groupBox16.Controls.Add(this.button_ON_CH3);
+            this.groupBox16.Controls.Add(this.label_enable_CH3);
+            this.groupBox16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.groupBox16.Location = new System.Drawing.Point(25, 26);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Size = new System.Drawing.Size(181, 63);
+            this.groupBox16.TabIndex = 14;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "Enable:";
+            // 
+            // button_OFF_CH3
+            // 
+            this.button_OFF_CH3.Location = new System.Drawing.Point(119, 20);
+            this.button_OFF_CH3.Name = "button_OFF_CH3";
+            this.button_OFF_CH3.Size = new System.Drawing.Size(55, 36);
+            this.button_OFF_CH3.TabIndex = 11;
+            this.button_OFF_CH3.Text = "OFF";
+            this.button_OFF_CH3.UseVisualStyleBackColor = true;
+            // 
+            // button_ON_CH3
+            // 
+            this.button_ON_CH3.Location = new System.Drawing.Point(7, 20);
+            this.button_ON_CH3.Name = "button_ON_CH3";
+            this.button_ON_CH3.Size = new System.Drawing.Size(55, 36);
+            this.button_ON_CH3.TabIndex = 9;
+            this.button_ON_CH3.Text = "ON";
+            this.button_ON_CH3.UseVisualStyleBackColor = true;
+            // 
+            // label_enable_CH3
+            // 
+            this.label_enable_CH3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_enable_CH3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label_enable_CH3.Location = new System.Drawing.Point(68, 29);
+            this.label_enable_CH3.Name = "label_enable_CH3";
+            this.label_enable_CH3.Size = new System.Drawing.Size(45, 20);
+            this.label_enable_CH3.TabIndex = 10;
+            this.label_enable_CH3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 611);
+            this.ClientSize = new System.Drawing.Size(824, 637);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(800, 650);
-            this.MinimumSize = new System.Drawing.Size(800, 650);
+            this.MaximumSize = new System.Drawing.Size(840, 676);
+            this.MinimumSize = new System.Drawing.Size(840, 676);
             this.Name = "Form1";
             this.Text = "High Voltage Power Supply";
             this.panel1.ResumeLayout(false);
@@ -1284,8 +1230,6 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox13.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_outvolt_CH3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_prevolt_CH3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_voltage_CH3)).EndInit();
             this.groupBox9.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
@@ -1294,8 +1238,6 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox12.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_outvolt_CH2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_prevolt_CH2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_voltage_CH2)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
@@ -1304,11 +1246,12 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox11.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_outvolt_CH1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_prevolt_CH1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_voltage_CH1)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox16.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1366,31 +1309,16 @@ namespace HV_Power_Supply_GUI_ver._1
         private System.Windows.Forms.Button button_outputOFF_CH3;
         private System.Windows.Forms.Button button_outputON_CH3;
         private System.Windows.Forms.Label label_output_CH3;
-        private System.Windows.Forms.CheckBox checkBox_Enable_CH3;
         private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.Button button_outputOFF_CH2;
         private System.Windows.Forms.Button button_outputON_CH2;
         private System.Windows.Forms.Label label_output_CH2;
-        private System.Windows.Forms.CheckBox checkBox_Enable_CH2;
-        private System.Windows.Forms.CheckBox checkBox_Enable_CH1;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.Button button_outputOFF_CH1;
         private System.Windows.Forms.Button button_outputON_CH1;
         private System.Windows.Forms.Label label_output_CH1;
         private System.Windows.Forms.Label label_debug;
         private System.Windows.Forms.Button button_ModulSetting;
-        private System.Windows.Forms.NumericUpDown numericUpDown_outvolt_CH3;
-        private System.Windows.Forms.NumericUpDown numericUpDown_prevolt_CH3;
-        private System.Windows.Forms.NumericUpDown numericUpDown_outvolt_CH2;
-        private System.Windows.Forms.NumericUpDown numericUpDown_prevolt_CH2;
-        private System.Windows.Forms.NumericUpDown numericUpDown_outvolt_CH1;
-        private System.Windows.Forms.NumericUpDown numericUpDown_prevolt_CH1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label_pg_CH3;
         private System.Windows.Forms.Label label_oc_CH3;
         private System.Windows.Forms.Label label_pg_CH2;
@@ -1403,8 +1331,21 @@ namespace HV_Power_Supply_GUI_ver._1
         private System.Windows.Forms.Timer timer_req;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button_AllOff;
+        private System.Windows.Forms.Button button_AllOn;
+        private System.Windows.Forms.Button button_LoadSetAllOn;
+        private System.Windows.Forms.GroupBox groupBox14;
+        private System.Windows.Forms.Button button_OFF_CH1;
+        private System.Windows.Forms.Button button_ON_CH1;
+        private System.Windows.Forms.Label label_enable_CH1;
+        private System.Windows.Forms.GroupBox groupBox16;
+        private System.Windows.Forms.Button button_OFF_CH3;
+        private System.Windows.Forms.Button button_ON_CH3;
+        private System.Windows.Forms.Label label_enable_CH3;
+        private System.Windows.Forms.GroupBox groupBox15;
+        private System.Windows.Forms.Button button_OFF_CH2;
+        private System.Windows.Forms.Button button_ON_CH2;
+        private System.Windows.Forms.Label label_enable_CH2;
     }
 }
 
