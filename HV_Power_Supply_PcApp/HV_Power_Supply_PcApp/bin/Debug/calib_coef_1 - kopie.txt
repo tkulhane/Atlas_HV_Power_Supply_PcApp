@@ -1,0 +1,14 @@
+dac_set_k0=555.8774231
+dac_set_k1=549.4971319
+dac_set_k2=539.6963288
+dac_set_q1=657.5303964
+dac_set_q2=639.8176638
+dac_set_q3=637.2486844
+adc_set_k0=0.005423991
+adc_set_k1=0.005400886
+adc_set_k2=0.005507883
+adc_set_q0=0.062767245
+adc_set_q1=0.093797027
+adc_set_q2=0.055165318
+dac_getallcoef=0
+adc_getallcoef=0

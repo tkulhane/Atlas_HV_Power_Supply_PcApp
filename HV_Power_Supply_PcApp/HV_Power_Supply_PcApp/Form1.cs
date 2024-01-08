@@ -13,11 +13,11 @@ namespace HV_Power_Supply_GUI_ver._1
 {
     public partial class Form1 : Form
     {
+        ModulSetting_Form ModulSettingForm;
+        ModulSetting_Data ModulSettingData = new ModulSetting_Data();
+
         Communication communication;
 
-        private uint device_ip_address;
-        private uint device_net_mask;
-        private uint device_gateway;
         private bool device_connected;
 
         public Form1()
@@ -54,6 +54,9 @@ namespace HV_Power_Supply_GUI_ver._1
                 timer_setting = 0;
             }
             timer_setting++;
+
+            
+
         }
 
         //-------------------------------------------------------------------------------------------------------------------
@@ -190,18 +193,134 @@ namespace HV_Power_Supply_GUI_ver._1
                     error_label(communication.ReadCommand_Data);
                     break;
 
+                case Communication.eCommandCode.adc_get_k0:
+                    ModulSettingData.ch1_adc_voltage_k = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.adc_get_k1:
+                    ModulSettingData.ch2_adc_voltage_k = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.adc_get_k2:
+                    ModulSettingData.ch3_adc_voltage_k = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.adc_get_k3:
+                    ModulSettingData.ch1_adc_current_k = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.adc_get_k4:
+                    ModulSettingData.ch2_adc_current_k = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.adc_get_k5:
+                    ModulSettingData.ch3_adc_current_k = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.adc_get_q0:
+                    ModulSettingData.ch1_adc_voltage_q = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.adc_get_q1:
+                    ModulSettingData.ch2_adc_voltage_q = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.adc_get_q2:
+                    ModulSettingData.ch3_adc_voltage_q = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.adc_get_q3:
+                    ModulSettingData.ch1_adc_current_q = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.adc_get_q4:
+                    ModulSettingData.ch2_adc_current_q = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.adc_get_q5:
+                    ModulSettingData.ch3_adc_current_q = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.dac_get_k0:
+                    ModulSettingData.ch1_dac_k = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.dac_get_k1:
+                    ModulSettingData.ch2_dac_k = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.dac_get_k2:
+                    ModulSettingData.ch3_dac_k = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.dac_get_q0:
+                    ModulSettingData.ch1_dac_q = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.dac_get_q1:
+                    ModulSettingData.ch2_dac_q = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.dac_get_q2:
+                    ModulSettingData.ch3_dac_q = communication.ReadCommand_Data_float;
+                    ModulSettingFormUpdate();
+                    break;
 
                 case Communication.eCommandCode.ip_get_myip:
-                    device_ip_address = communication.ReadCommand_Data;
+                        ModulSettingData.ipAddress = communication.ReadCommand_Data;
+                        ModulSettingFormUpdate();
                     break;
 
                 case Communication.eCommandCode.ip_get_mymask:
-                    device_net_mask = communication.ReadCommand_Data;
+                    ModulSettingData.netMask = communication.ReadCommand_Data;
+                    ModulSettingFormUpdate();
                     break;
 
                 case Communication.eCommandCode.ip_get_mygatew:
-                    device_gateway = communication.ReadCommand_Data;
+                    ModulSettingData.gateWay = communication.ReadCommand_Data;
+                    ModulSettingFormUpdate();
                     break;
+
+                case Communication.eCommandCode.CfgGet_EnableErrorExecute:
+                    ModulSettingData.EnableErrorExecute = communication.ReadCommand_Data;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.CfgGet_DisableInConnLost:
+                    ModulSettingData.DisableInConnLost = communication.ReadCommand_Data;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.CfgGet_CtrlOutWithChEnable:
+                    ModulSettingData.CtrlOutWithEnable = communication.ReadCommand_Data;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.CfgGet_ErrorExecuteAutoRestart:
+                    ModulSettingData.ErrorExecuteAutoRestart = communication.ReadCommand_Data;
+                    ModulSettingFormUpdate();
+                    break;
+
+                default: 
+                    break;
+
             }
 
         }
@@ -360,31 +479,40 @@ namespace HV_Power_Supply_GUI_ver._1
         }
 
 
+
+        
+
         //-------------------------------------------------------------------------------------------------------------------
         //Modul Setting form
         //-------------------------------------------------------------------------------------------------------------------
         private void button_set_Click(object sender, EventArgs e)
         {
             communication.SendCommand(Communication.eCommandCode.ip_getsetting, 0);
-            Form_Setting form = new Form_Setting();
+            communication.SendCommand(Communication.eCommandCode.adc_getallcoef, 0);
+            communication.SendCommand(Communication.eCommandCode.dac_getallcoef, 0);
+            communication.SendCommand(Communication.eCommandCode.Cfg_Get, 0);
 
-            form.xip_address = device_ip_address;
-            form.xnet_mask = device_net_mask;
-            form.xgateway = device_gateway;
-            form.xserial = communication;
-            
-            form.ShowDialog();
-            DialogResult fdr= form.DialogResult;
+
+            ModulSettingForm = new ModulSetting_Form();
+
+            ModulSettingForm.ModulSettingData = ModulSettingData;
+            ModulSettingForm.ShowDialog();
+            DialogResult fdr= ModulSettingForm.DialogResult;
 
             if (fdr == DialogResult.OK)
             {
-                device_ip_address = form.xip_address;
-                device_net_mask = form.xnet_mask;
-                device_gateway = form.xgateway;
 
-                
-                textBox_IP.Text = form.string_from_ip(device_ip_address);
+
             }
+        }
+
+
+        private void ModulSettingFormUpdate() 
+        {
+            if (ModulSettingForm == null) return;
+
+            ModulSettingForm.ModulSettingData = ModulSettingData;
+            ModulSettingForm.UpdateValues();
         }
 
 

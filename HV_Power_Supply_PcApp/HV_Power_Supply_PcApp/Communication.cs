@@ -93,6 +93,28 @@ namespace HV_Power_Supply_GUI_ver._1
             set_out_reg_CH1,
             set_out_reg_CH2,
             set_out_reg_CH3,
+
+            ch1_get_err_state,
+            ch2_get_err_state,
+            ch3_get_err_state,
+            errState_Get,
+
+            CfgSet_EnableErrorExecute,
+            CfgSet_DisableInConnLost,
+            CfgSet_CtrlOutWithChEnable,
+            CfgSet_ErrorExecuteAutoRestart,
+
+            CfgGet_EnableErrorExecute,
+            CfgGet_DisableInConnLost,
+            CfgGet_CtrlOutWithChEnable,
+            CfgGet_ErrorExecuteAutoRestart,
+            Cfg_Get,
+
+            params_store,
+            params_default,
+
+            Eth_ReInit,
+
             reset
         }
 
@@ -158,15 +180,15 @@ namespace HV_Power_Supply_GUI_ver._1
     "dac_set_k0",
     "dac_set_k1",
     "dac_set_k2",
+    "dac_set_q0",
     "dac_set_q1",
     "dac_set_q2",
-    "dac_set_q3",
     "dac_get_k0",
     "dac_get_k1",
     "dac_get_k2",
+    "dac_get_q0",
     "dac_get_q1",
     "dac_get_q2",
-    "dac_get_q3",
     "adc_getallcoef",
     "dac_getallcoef",
     "ch1_setprereg",
@@ -175,6 +197,29 @@ namespace HV_Power_Supply_GUI_ver._1
     "ch1_setoutreg",
     "ch2_setoutreg",
     "ch3_setoutreg",
+
+    "ch1_get_err_state",
+    "ch2_get_err_state",
+    "ch3_get_err_state",
+    "errState_Get",
+
+    "CfgSet_EnableErrorExecute",
+    "CfgSet_DisableInConnLost",
+    "CfgSet_CtrlOutWithChEnable",
+    "CfgSet_ErrorExecuteAutoRestart",
+
+    "CfgGet_EnableErrorExecute",
+    "CfgGet_DisableInConnLost",
+    "CfgGet_CtrlOutWithChEnable",
+    "CfgGet_ErrorExecuteAutoRestart",
+
+    "Cfg_Get",
+
+    "params_store",
+    "params_default",
+
+    "ETH_ReInit",
+
     "reset"
         };
 
@@ -213,7 +258,13 @@ namespace HV_Power_Supply_GUI_ver._1
 
         public bool Open_UDP(string ipadress)
         {
-            udp = new UdpClient(udpport);
+            IPEndPoint localpt = new IPEndPoint(IPAddress.Any, udpport);
+
+            udp = new UdpClient();
+            //udp = new UdpClient(udpport);
+            udp.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            udp.Client.Bind(localpt);
+            
 
             IPAddress ip;
             if (IPAddress.TryParse(ipadress, out ip))
@@ -298,6 +349,7 @@ namespace HV_Power_Supply_GUI_ver._1
             {
                 byte[] data = Encoding.ASCII.GetBytes(s);
                 udp.Send(data, data.Length, new IPEndPoint(ip_enpoint, udpport));
+                
             }
 
         }

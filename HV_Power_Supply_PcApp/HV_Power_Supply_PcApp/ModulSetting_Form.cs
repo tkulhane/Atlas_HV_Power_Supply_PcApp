@@ -10,20 +10,13 @@ using System.Windows.Forms;
 
 namespace HV_Power_Supply_GUI_ver._1
 {
-    public partial class Form_Setting : Form
+    public partial class ModulSetting_Form : Form
     {
-        private Communication serial;
-        private uint ip_address;
-        private uint net_mask;
-        private uint gateway;
+        ModulSetting_Data _ModulSettingData;
 
+        internal ModulSetting_Data ModulSettingData { get => _ModulSettingData; set => _ModulSettingData = value; }
 
-        internal Communication xserial { get => serial; set => serial = value; }
-        internal uint xip_address { get => ip_address; set => ip_address = value; }
-        internal uint xnet_mask { get => net_mask; set => net_mask = value; }
-        internal uint xgateway { get => gateway; set => gateway = value; }
-
-        public Form_Setting()
+        public ModulSetting_Form()
         {
             InitializeComponent();
 
@@ -31,9 +24,50 @@ namespace HV_Power_Supply_GUI_ver._1
 
         private void Form_Setting_Load(object sender, EventArgs e)
         {
-            textBox_ip.Text = string_from_ip(ip_address);
-            textBox_nm.Text = string_from_ip(net_mask);
-            textBox_gw.Text = string_from_ip(gateway);
+
+            UpdateValues();
+        }
+
+        public void UpdateValues() 
+        {
+            textBox_ip.Text = string_from_ip(_ModulSettingData.ipAddress);
+            textBox_nm.Text = string_from_ip(_ModulSettingData.netMask);
+            textBox_gw.Text = string_from_ip(_ModulSettingData.gateWay);
+
+            textBox_ch1_adc_voltage_k.Text = _ModulSettingData.ch1_adc_voltage_k.ToString();
+            textBox_ch2_adc_voltage_k.Text = _ModulSettingData.ch2_adc_voltage_k.ToString();
+            textBox_ch3_adc_voltage_k.Text = _ModulSettingData.ch3_adc_voltage_k.ToString();
+            textBox_ch1_adc_current_k.Text = _ModulSettingData.ch1_adc_current_k.ToString();
+            textBox_ch2_adc_current_k.Text = _ModulSettingData.ch2_adc_current_k.ToString();
+            textBox_ch3_adc_current_k.Text = _ModulSettingData.ch3_adc_current_k.ToString();
+
+            textBox_ch1_adc_voltage_q.Text = _ModulSettingData.ch1_adc_voltage_q.ToString();
+            textBox_ch2_adc_voltage_q.Text = _ModulSettingData.ch2_adc_voltage_q.ToString();
+            textBox_ch3_adc_voltage_q.Text = _ModulSettingData.ch3_adc_voltage_q.ToString();
+            textBox_ch1_adc_current_q.Text = _ModulSettingData.ch1_adc_current_q.ToString();
+            textBox_ch2_adc_current_q.Text = _ModulSettingData.ch2_adc_current_q.ToString();
+            textBox_ch3_adc_current_q.Text = _ModulSettingData.ch3_adc_current_q.ToString();
+
+            textBox_ch1_dac_k.Text = _ModulSettingData.ch2_dac_k.ToString();
+            textBox_ch2_dac_k.Text = _ModulSettingData.ch2_dac_k.ToString();
+            textBox_ch3_dac_k.Text = _ModulSettingData.ch3_dac_k.ToString();
+
+            textBox_ch1_dac_q.Text = _ModulSettingData.ch2_dac_q.ToString();
+            textBox_ch2_dac_q.Text = _ModulSettingData.ch2_dac_q.ToString();
+            textBox_ch3_dac_q.Text = _ModulSettingData.ch3_dac_q.ToString();
+
+            checkBox_EnableErrorExecute.Checked = GetBoolFromUint32(_ModulSettingData.EnableErrorExecute);
+            checkBox_DisableInConnLost.Checked = GetBoolFromUint32(_ModulSettingData.DisableInConnLost);
+            checkBox_CtrlOutWithEnable.Checked = GetBoolFromUint32(_ModulSettingData.CtrlOutWithEnable);
+            checkBox_ErrorExecuteAutoRestart.Checked = GetBoolFromUint32(_ModulSettingData.ErrorExecuteAutoRestart);
+
+
+        }
+
+        public bool GetBoolFromUint32(UInt32 data) 
+        {
+            if (data > 0) return true;
+            else return false;
         }
 
         public uint ip_from_string(string s) 
@@ -81,6 +115,7 @@ namespace HV_Power_Supply_GUI_ver._1
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
+            /*
             ip_address = ip_from_string(textBox_ip.Text);
             net_mask = ip_from_string(textBox_nm.Text);
             gateway = ip_from_string(textBox_gw.Text);
@@ -90,6 +125,7 @@ namespace HV_Power_Supply_GUI_ver._1
             serial.SendCommand(Communication.eCommandCode.ip_store_mygatew, ip_from_string(textBox_gw.Text));
 
             DialogResult = DialogResult.OK;
+            */
             this.Close();
         }
 
@@ -103,6 +139,7 @@ namespace HV_Power_Supply_GUI_ver._1
 
         private void button_save_reset_Click(object sender, EventArgs e)
         {
+            /*
             ip_address = ip_from_string(textBox_ip.Text);
             net_mask = ip_from_string(textBox_nm.Text);
             gateway = ip_from_string(textBox_gw.Text);
@@ -113,6 +150,7 @@ namespace HV_Power_Supply_GUI_ver._1
             serial.SendCommand(Communication.eCommandCode.reset,0);
 
             DialogResult = DialogResult.OK;
+            */
             this.Close();
         }
     }

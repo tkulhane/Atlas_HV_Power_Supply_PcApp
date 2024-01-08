@@ -258,7 +258,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.textBox_IP.Name = "textBox_IP";
             this.textBox_IP.Size = new System.Drawing.Size(90, 20);
             this.textBox_IP.TabIndex = 22;
-            this.textBox_IP.Text = "192.168.1.22";
+            this.textBox_IP.Text = "192.168.0.22";
             // 
             // radioButton_UDP
             // 
