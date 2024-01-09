@@ -29,15 +29,12 @@ namespace HV_Power_Supply_GUI_ver._1
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_Save = new System.Windows.Forms.Button();
             this.textBox_ip = new System.Windows.Forms.TextBox();
             this.textBox_nm = new System.Windows.Forms.TextBox();
             this.textBox_gw = new System.Windows.Forms.TextBox();
-            this.button_exit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button_save_reset = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox_ch3_adc_voltage_q = new System.Windows.Forms.TextBox();
@@ -83,13 +80,13 @@ namespace HV_Power_Supply_GUI_ver._1
             this.checkBox_DisableInConnLost = new System.Windows.Forms.CheckBox();
             this.checkBox_EnableErrorExecute = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.button_LoadDefault = new System.Windows.Forms.Button();
+            this.button_DeviceReset = new System.Windows.Forms.Button();
+            this.button_Send = new System.Windows.Forms.Button();
+            this.button_readFrom = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.button_Save = new System.Windows.Forms.Button();
+            this.button_exit = new System.Windows.Forms.Button();
             this.label_test = new System.Windows.Forms.Label();
             this.checkBox_ErrorExecuteAutoRestart = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
@@ -98,16 +95,6 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btn_Save
-            // 
-            this.btn_Save.Location = new System.Drawing.Point(219, 324);
-            this.btn_Save.Name = "btn_Save";
-            this.btn_Save.Size = new System.Drawing.Size(75, 35);
-            this.btn_Save.TabIndex = 0;
-            this.btn_Save.Text = "Save";
-            this.btn_Save.UseVisualStyleBackColor = true;
-            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
             // 
             // textBox_ip
             // 
@@ -129,16 +116,6 @@ namespace HV_Power_Supply_GUI_ver._1
             this.textBox_gw.Name = "textBox_gw";
             this.textBox_gw.Size = new System.Drawing.Size(91, 20);
             this.textBox_gw.TabIndex = 3;
-            // 
-            // button_exit
-            // 
-            this.button_exit.Location = new System.Drawing.Point(219, 406);
-            this.button_exit.Name = "button_exit";
-            this.button_exit.Size = new System.Drawing.Size(75, 35);
-            this.button_exit.TabIndex = 4;
-            this.button_exit.Text = "Cancel";
-            this.button_exit.UseVisualStyleBackColor = true;
-            this.button_exit.Click += new System.EventHandler(this.button_exit_Click);
             // 
             // label1
             // 
@@ -166,16 +143,6 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label3.Size = new System.Drawing.Size(55, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "GateWay:";
-            // 
-            // button_save_reset
-            // 
-            this.button_save_reset.Location = new System.Drawing.Point(219, 365);
-            this.button_save_reset.Name = "button_save_reset";
-            this.button_save_reset.Size = new System.Drawing.Size(75, 35);
-            this.button_save_reset.TabIndex = 8;
-            this.button_save_reset.Text = "Save and Reset";
-            this.button_save_reset.UseVisualStyleBackColor = true;
-            this.button_save_reset.Click += new System.EventHandler(this.button_save_reset_Click);
             // 
             // groupBox1
             // 
@@ -595,41 +562,45 @@ namespace HV_Power_Supply_GUI_ver._1
             this.button1.Text = "Load from File";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // button_LoadDefault
             // 
-            this.button2.Location = new System.Drawing.Point(20, 478);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 35);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "Load Default";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button_LoadDefault.Location = new System.Drawing.Point(20, 478);
+            this.button_LoadDefault.Name = "button_LoadDefault";
+            this.button_LoadDefault.Size = new System.Drawing.Size(75, 35);
+            this.button_LoadDefault.TabIndex = 15;
+            this.button_LoadDefault.Text = "Load Default";
+            this.button_LoadDefault.UseVisualStyleBackColor = true;
+            this.button_LoadDefault.Click += new System.EventHandler(this.button_LoadDefault_Click);
             // 
-            // button3
+            // button_DeviceReset
             // 
-            this.button3.Location = new System.Drawing.Point(488, 12);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 35);
-            this.button3.TabIndex = 16;
-            this.button3.Text = "Device Reset";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button_DeviceReset.Location = new System.Drawing.Point(488, 12);
+            this.button_DeviceReset.Name = "button_DeviceReset";
+            this.button_DeviceReset.Size = new System.Drawing.Size(75, 35);
+            this.button_DeviceReset.TabIndex = 16;
+            this.button_DeviceReset.Text = "Device Reset";
+            this.button_DeviceReset.UseVisualStyleBackColor = true;
+            this.button_DeviceReset.Click += new System.EventHandler(this.button_DeviceReset_Click);
             // 
-            // button4
+            // button_Send
             // 
-            this.button4.Location = new System.Drawing.Point(227, 478);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 35);
-            this.button4.TabIndex = 17;
-            this.button4.Text = "Send All";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button_Send.Location = new System.Drawing.Point(227, 478);
+            this.button_Send.Name = "button_Send";
+            this.button_Send.Size = new System.Drawing.Size(75, 35);
+            this.button_Send.TabIndex = 17;
+            this.button_Send.Text = "Only Send";
+            this.button_Send.UseVisualStyleBackColor = true;
+            this.button_Send.Click += new System.EventHandler(this.button_Send_Click);
             // 
-            // button5
+            // button_readFrom
             // 
-            this.button5.Location = new System.Drawing.Point(305, 12);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 35);
-            this.button5.TabIndex = 18;
-            this.button5.Text = "Read";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button_readFrom.Location = new System.Drawing.Point(305, 12);
+            this.button_readFrom.Name = "button_readFrom";
+            this.button_readFrom.Size = new System.Drawing.Size(75, 35);
+            this.button_readFrom.TabIndex = 18;
+            this.button_readFrom.Text = "Read";
+            this.button_readFrom.UseVisualStyleBackColor = true;
+            this.button_readFrom.Click += new System.EventHandler(this.button_readFrom_Click);
             // 
             // button6
             // 
@@ -640,23 +611,25 @@ namespace HV_Power_Supply_GUI_ver._1
             this.button6.Text = "Save to File";
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // button_Save
             // 
-            this.button7.Location = new System.Drawing.Point(146, 478);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 35);
-            this.button7.TabIndex = 20;
-            this.button7.Text = "Store to Flash";
-            this.button7.UseVisualStyleBackColor = true;
+            this.button_Save.Location = new System.Drawing.Point(146, 478);
+            this.button_Save.Name = "button_Save";
+            this.button_Save.Size = new System.Drawing.Size(75, 35);
+            this.button_Save.TabIndex = 20;
+            this.button_Save.Text = "Send and Save";
+            this.button_Save.UseVisualStyleBackColor = true;
+            this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
             // 
-            // button8
+            // button_exit
             // 
-            this.button8.Location = new System.Drawing.Point(488, 478);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 35);
-            this.button8.TabIndex = 21;
-            this.button8.Text = "Exit";
-            this.button8.UseVisualStyleBackColor = true;
+            this.button_exit.Location = new System.Drawing.Point(488, 478);
+            this.button_exit.Name = "button_exit";
+            this.button_exit.Size = new System.Drawing.Size(75, 35);
+            this.button_exit.TabIndex = 21;
+            this.button_exit.Text = "Exit";
+            this.button_exit.UseVisualStyleBackColor = true;
+            this.button_exit.Click += new System.EventHandler(this.button_exit_Click);
             // 
             // label_test
             // 
@@ -683,22 +656,19 @@ namespace HV_Power_Supply_GUI_ver._1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 529);
             this.Controls.Add(this.label_test);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button_exit);
+            this.Controls.Add(this.button_Save);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button_readFrom);
+            this.Controls.Add(this.button_Send);
+            this.Controls.Add(this.button_DeviceReset);
+            this.Controls.Add(this.button_LoadDefault);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button_save_reset);
-            this.Controls.Add(this.button_exit);
-            this.Controls.Add(this.btn_Save);
             this.MaximumSize = new System.Drawing.Size(600, 600);
             this.MinimumSize = new System.Drawing.Size(308, 243);
             this.Name = "ModulSetting_Form";
@@ -721,16 +691,12 @@ namespace HV_Power_Supply_GUI_ver._1
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.TextBox textBox_ip;
         private System.Windows.Forms.TextBox textBox_nm;
         private System.Windows.Forms.TextBox textBox_gw;
-        private System.Windows.Forms.Button button_exit;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button_save_reset;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox textBox_ch3_adc_voltage_q;
@@ -776,13 +742,13 @@ namespace HV_Power_Supply_GUI_ver._1
         private System.Windows.Forms.CheckBox checkBox_DisableInConnLost;
         private System.Windows.Forms.CheckBox checkBox_EnableErrorExecute;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button_LoadDefault;
+        private System.Windows.Forms.Button button_DeviceReset;
+        private System.Windows.Forms.Button button_Send;
+        private System.Windows.Forms.Button button_readFrom;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button_Save;
+        private System.Windows.Forms.Button button_exit;
         private System.Windows.Forms.Label label_test;
         private System.Windows.Forms.CheckBox checkBox_ErrorExecuteAutoRestart;
     }

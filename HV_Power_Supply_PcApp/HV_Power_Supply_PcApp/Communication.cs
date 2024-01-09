@@ -244,12 +244,11 @@ namespace HV_Power_Supply_GUI_ver._1
 
 
 
-
-        public Communication(SerialPort serialport, int UDPPort, efunction f)
+        public Communication(SerialPort serialport, efunction f)
         {
             this.serialport = serialport;
             //this.udp = new UdpClient(UDPPort);
-            udpport = UDPPort;
+            
             CommunicationType = eCommunicationType.non;
             ExecuteFunction = f;
 
@@ -257,8 +256,9 @@ namespace HV_Power_Supply_GUI_ver._1
             read_timer.Interval = 10;
         }
 
-        public bool Open_UDP(string ipadress)
+        public bool Open_UDP(string ipadress, int UDPPort)
         {
+            udpport = UDPPort;
 
             IPEndPoint localpt = new IPEndPoint(IPAddress.Any, udpport);
 
@@ -271,7 +271,8 @@ namespace HV_Power_Supply_GUI_ver._1
             if (IPAddress.TryParse(ipadress, out ip))
             {
                 remoteIp = ip;
-                remoteIpEndPoint = new IPEndPoint(remoteIp, udpport);
+                
+                remoteIpEndPoint = new IPEndPoint(remoteIp, UDPPort);
                 //udp.Connect(ip, udpport);
                 udp.BeginReceive(new AsyncCallback(UdpReceive), udp);
                 CommunicationType = eCommunicationType.udp;
@@ -340,6 +341,31 @@ namespace HV_Power_Supply_GUI_ver._1
             //string s = command_strings[(int)Command] + "=" + Data.ToString() + "\n\r";
 
             string s = "/" + ((int)Command).ToString() + "=" + Data.ToString() + "\n\r";
+
+            if (CommunicationType == eCommunicationType.serial)
+            {
+                if (!serialport.IsOpen) return;
+                serialport.Write(s);
+            }
+
+            else if (CommunicationType == eCommunicationType.udp)
+            {
+                byte[] data = Encoding.ASCII.GetBytes(s);
+                //udp.Send(data, data.Length, new IPEndPoint(remoteIp, udpport));
+                udp.Send(data, data.Length, remoteIpEndPoint);
+
+            }
+
+        }
+
+        public void SendCommand_Float(eCommandCode Command, float Data)
+        {
+
+            //string s = command_strings[(int)Command] + "=" + Data.ToString() + "\n\r";
+
+            string s = "/" + ((int)Command).ToString() + "=" + Data.ToString() + "\n\r";
+            s = s.Replace(',', '.');
+
 
             if (CommunicationType == eCommunicationType.serial)
             {
@@ -489,7 +515,7 @@ namespace HV_Power_Supply_GUI_ver._1
 
                
 
-                //if (ipe.Address.Equals(remoteIpEndPoint.Address))
+                if (ipe.Address.Equals(remoteIpEndPoint.Address))
                 {
 
                     string s = Encoding.ASCII.GetString(data);

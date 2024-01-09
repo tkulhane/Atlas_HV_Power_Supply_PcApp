@@ -8,10 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace HV_Power_Supply_GUI_ver._1
 {
     public partial class ModulSetting_Form : Form
     {
+
+
+        internal delegate void efunction1(Communication.eCommandCode Command, UInt32 Data);
+        efunction1 _FunctionSendData;
+
+        internal delegate void efunction2(Communication.eCommandCode Command, float Data);
+        efunction2 _FunctionSendData_Float;
+
+
+        internal efunction1 FunctionSendData { get => _FunctionSendData; set => _FunctionSendData = value; }
+        internal efunction2 FunctionSendData_Float { get => _FunctionSendData_Float; set => _FunctionSendData_Float = value; }
+
         ModulSetting_Data _ModulSettingData;
 
         internal ModulSetting_Data ModulSettingData { get => _ModulSettingData; set => _ModulSettingData = value; }
@@ -64,6 +77,69 @@ namespace HV_Power_Supply_GUI_ver._1
 
         }
 
+        private void SendAll()
+        {
+            _FunctionSendData(Communication.eCommandCode.ip_store_myip, ip_from_string(textBox_ip.Text));
+            _FunctionSendData(Communication.eCommandCode.ip_store_mymask, ip_from_string(textBox_nm.Text));
+            _FunctionSendData(Communication.eCommandCode.ip_store_mygatew, ip_from_string(textBox_gw.Text));
+
+            SendFloat(Communication.eCommandCode.adc_set_k0, textBox_ch1_adc_voltage_k);
+            SendFloat(Communication.eCommandCode.adc_set_k1, textBox_ch2_adc_voltage_k);
+            SendFloat(Communication.eCommandCode.adc_set_k2, textBox_ch3_adc_voltage_k);
+            SendFloat(Communication.eCommandCode.adc_set_k3, textBox_ch1_adc_current_k);
+            SendFloat(Communication.eCommandCode.adc_set_k4, textBox_ch2_adc_current_k);
+            SendFloat(Communication.eCommandCode.adc_set_k5, textBox_ch3_adc_current_k);
+
+            SendFloat(Communication.eCommandCode.adc_set_q0, textBox_ch1_adc_voltage_q);
+            SendFloat(Communication.eCommandCode.adc_set_q1, textBox_ch2_adc_voltage_q);
+            SendFloat(Communication.eCommandCode.adc_set_q2, textBox_ch3_adc_voltage_q);
+            SendFloat(Communication.eCommandCode.adc_set_q3, textBox_ch1_adc_current_q);
+            SendFloat(Communication.eCommandCode.adc_set_q4, textBox_ch2_adc_current_q);
+            SendFloat(Communication.eCommandCode.adc_set_q5, textBox_ch3_adc_current_q);
+
+            SendFloat(Communication.eCommandCode.dac_set_k0, textBox_ch1_dac_k);
+            SendFloat(Communication.eCommandCode.dac_set_k1, textBox_ch2_dac_k);
+            SendFloat(Communication.eCommandCode.dac_set_k2, textBox_ch3_dac_k);
+            SendFloat(Communication.eCommandCode.dac_set_q0, textBox_ch1_dac_q);
+            SendFloat(Communication.eCommandCode.dac_set_q1, textBox_ch2_dac_q);
+            SendFloat(Communication.eCommandCode.dac_set_q2, textBox_ch3_dac_q);
+
+            SendBool(Communication.eCommandCode.CfgSet_EnableErrorExecute, checkBox_EnableErrorExecute.Checked);
+            SendBool(Communication.eCommandCode.CfgSet_DisableInConnLost, checkBox_DisableInConnLost.Checked);
+            SendBool(Communication.eCommandCode.CfgSet_CtrlOutWithChEnable, checkBox_CtrlOutWithEnable.Checked);
+            SendBool(Communication.eCommandCode.CfgSet_ErrorExecuteAutoRestart, checkBox_ErrorExecuteAutoRestart.Checked);
+
+
+        }
+
+        private void SendFloat(Communication.eCommandCode cmd, TextBox textBox) 
+        {
+            float value;
+
+            if(!float.TryParse(textBox.Text, out value)) 
+            {
+                return;
+            }
+
+            _FunctionSendData_Float(cmd, value);
+        }
+
+        private void SendBool(Communication.eCommandCode cmd, bool value) 
+        {
+            UInt32 value32;
+
+            if (value) 
+            {
+                value32 = 1;
+            }
+            else 
+            {
+                value32 = 0;
+            }
+
+            _FunctionSendData(cmd, value32);
+        }
+
         public bool GetBoolFromUint32(UInt32 data) 
         {
             if (data > 0) return true;
@@ -94,8 +170,11 @@ namespace HV_Power_Supply_GUI_ver._1
                 addr = addr | ((x & 0xff) << (3-i)*8);
             }
 
+            MessageBox.Show(addr.ToString(),"", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             return addr;
 
+            
         }
 
         public string string_from_ip(uint ip) 
@@ -113,44 +192,38 @@ namespace HV_Power_Supply_GUI_ver._1
             return s;
         }
 
-        private void btn_Save_Click(object sender, EventArgs e)
+        private void button_readFrom_Click(object sender, EventArgs e)
         {
-            /*
-            ip_address = ip_from_string(textBox_ip.Text);
-            net_mask = ip_from_string(textBox_nm.Text);
-            gateway = ip_from_string(textBox_gw.Text);
-
-            serial.SendCommand(Communication.eCommandCode.ip_store_myip, ip_from_string(textBox_ip.Text));
-            serial.SendCommand(Communication.eCommandCode.ip_store_mymask, ip_from_string(textBox_nm.Text));
-            serial.SendCommand(Communication.eCommandCode.ip_store_mygatew, ip_from_string(textBox_gw.Text));
-
-            DialogResult = DialogResult.OK;
-            */
-            this.Close();
+            _FunctionSendData(Communication.eCommandCode.ip_getsetting, 0);
+            _FunctionSendData(Communication.eCommandCode.adc_getallcoef, 0);
+            _FunctionSendData(Communication.eCommandCode.dac_getallcoef, 0);
+            _FunctionSendData(Communication.eCommandCode.Cfg_Get, 0);
         }
 
+        private void button_DeviceReset_Click(object sender, EventArgs e)
+        {
+            _FunctionSendData(Communication.eCommandCode.reset, 0);
+        }
+
+        private void button_LoadDefault_Click(object sender, EventArgs e)
+        {
+            _FunctionSendData(Communication.eCommandCode.params_default, 0);
+        }
+
+        private void button_Save_Click(object sender, EventArgs e)
+        {
+            SendAll();
+            _FunctionSendData(Communication.eCommandCode.params_default, 0);
+        }
+
+        private void button_Send_Click(object sender, EventArgs e)
+        {
+            SendAll();
+        }
 
 
         private void button_exit_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
-
-        private void button_save_reset_Click(object sender, EventArgs e)
-        {
-            /*
-            ip_address = ip_from_string(textBox_ip.Text);
-            net_mask = ip_from_string(textBox_nm.Text);
-            gateway = ip_from_string(textBox_gw.Text);
-
-            serial.SendCommand(Communication.eCommandCode.ip_store_myip, ip_from_string(textBox_ip.Text));
-            serial.SendCommand(Communication.eCommandCode.ip_store_mymask, ip_from_string(textBox_nm.Text));
-            serial.SendCommand(Communication.eCommandCode.ip_store_mygatew, ip_from_string(textBox_gw.Text));
-            serial.SendCommand(Communication.eCommandCode.reset,0);
-
-            DialogResult = DialogResult.OK;
-            */
             this.Close();
         }
     }

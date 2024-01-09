@@ -23,7 +23,7 @@ namespace HV_Power_Supply_GUI_ver._1
         public Form1()
         {
             InitializeComponent();
-            communication = new Communication(XserialPort,5005, ExecuteCommand);
+            communication = new Communication(XserialPort, ExecuteCommand);
         }
 
         //-------------------------------------------------------------------------------------------------------------------
@@ -428,7 +428,9 @@ namespace HV_Power_Supply_GUI_ver._1
             }         
             else if(radioButton_UDP.Checked == true) 
             {
-                communication.Open_UDP(textBox_IP.Text);
+                int port;
+                if (!int.TryParse(textBox_EthPort.Text, out port)) return;
+                communication.Open_UDP(textBox_IP.Text, port);
             }
 
 
@@ -491,9 +493,11 @@ namespace HV_Power_Supply_GUI_ver._1
             communication.SendCommand(Communication.eCommandCode.dac_getallcoef, 0);
             communication.SendCommand(Communication.eCommandCode.Cfg_Get, 0);
 
-
+            
             ModulSettingForm = new ModulSetting_Form();
 
+            ModulSettingForm.FunctionSendData = communication.SendCommand;
+            ModulSettingForm.FunctionSendData_Float = communication.SendCommand_Float;
             ModulSettingForm.ModulSettingData = ModulSettingData;
             ModulSettingForm.ShowDialog();
             DialogResult fdr= ModulSettingForm.DialogResult;
