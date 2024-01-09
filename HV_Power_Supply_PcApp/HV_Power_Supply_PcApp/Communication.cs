@@ -238,7 +238,8 @@ namespace HV_Power_Supply_GUI_ver._1
         private SerialPort serialport;
         private UdpClient udp;
         private int udpport;
-        private IPAddress ip_enpoint;
+        private IPAddress remoteIp;
+        private IPEndPoint remoteIpEndPoint;
         private eCommunicationType CommunicationType = eCommunicationType.non;
 
 
@@ -258,10 +259,10 @@ namespace HV_Power_Supply_GUI_ver._1
 
         public bool Open_UDP(string ipadress)
         {
+
             IPEndPoint localpt = new IPEndPoint(IPAddress.Any, udpport);
 
             udp = new UdpClient();
-            //udp = new UdpClient(udpport);
             udp.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             udp.Client.Bind(localpt);
             
@@ -269,7 +270,8 @@ namespace HV_Power_Supply_GUI_ver._1
             IPAddress ip;
             if (IPAddress.TryParse(ipadress, out ip))
             {
-                ip_enpoint = ip;
+                remoteIp = ip;
+                remoteIpEndPoint = new IPEndPoint(remoteIp, udpport);
                 //udp.Connect(ip, udpport);
                 udp.BeginReceive(new AsyncCallback(UdpReceive), udp);
                 CommunicationType = eCommunicationType.udp;
@@ -348,8 +350,9 @@ namespace HV_Power_Supply_GUI_ver._1
             else if (CommunicationType == eCommunicationType.udp)
             {
                 byte[] data = Encoding.ASCII.GetBytes(s);
-                udp.Send(data, data.Length, new IPEndPoint(ip_enpoint, udpport));
-                
+                //udp.Send(data, data.Length, new IPEndPoint(remoteIp, udpport));
+                udp.Send(data, data.Length, remoteIpEndPoint);
+
             }
 
         }
@@ -361,7 +364,7 @@ namespace HV_Power_Supply_GUI_ver._1
         public UInt32 ReadCommand_Data;
         public float ReadCommand_Data_float;
 
-        public string lineXXX;
+
 
         byte[] lineBuffer = new byte[128];
         int LineBuf_pos = 0;
@@ -466,31 +469,38 @@ namespace HV_Power_Supply_GUI_ver._1
             }
         }
 
+        [Obsolete]
         private void UdpReceive(IAsyncResult ar) 
         {
 
             UdpClient uu = ar.AsyncState as UdpClient;
             if (uu == null)
             {
-
                 return;
             }
 
-            IPEndPoint ipe = new IPEndPoint(ip_enpoint, 0);
-            //IPEndPoint ipe = new IPEndPoint(IPAddress.Any, 0); //port 0 je pro vsechny
+
+            IPEndPoint ipe = new IPEndPoint(IPAddress.Any, 5005); //port 0 je pro vsechny
 
             try 
             {
+
                 byte[] data = uu.EndReceive(ar, ref ipe);
-                string s = Encoding.ASCII.GetString(data);
-                s = s.Replace('\n', ' ');
-                s = s.Replace('\r', ' ');
-                s = s.Trim();
-                //s = s + 0;
 
+               
 
-                ProcessLine(s);
-                ExecuteFunction();
+                //if (ipe.Address.Equals(remoteIpEndPoint.Address))
+                {
+
+                    string s = Encoding.ASCII.GetString(data);
+                    s = s.Replace('\n', ' ');
+                    s = s.Replace('\r', ' ');
+                    s = s.Trim();
+
+                    ProcessLine(s);
+                    ExecuteFunction();
+                }
+
 
                 uu.BeginReceive(new AsyncCallback(UdpReceive), uu);
             }

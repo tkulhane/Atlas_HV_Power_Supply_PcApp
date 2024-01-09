@@ -140,7 +140,6 @@ namespace HV_Power_Supply_GUI_ver._1
                     bar_voltage_CH1.value = (int)communication.ReadCommand_Data_float;
                     bar_voltage_CH1.Invalidate();
 
-                    label_debug.Text = communication.lineXXX;
                     break;
 
                 case Communication.eCommandCode.get_voltage_CH2:
