@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // sadu atributů. Změnou hodnot těchto atributů se upraví informace
 // přidružené k sestavení.
 [assembly: AssemblyTitle("HV_Power_Supply")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("HV_Power_Supply")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ZCU PiLab")]
 [assembly: AssemblyProduct("HV_Power_Supply")]

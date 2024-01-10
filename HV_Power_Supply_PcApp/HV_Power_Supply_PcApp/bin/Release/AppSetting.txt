@@ -1,0 +1,9 @@
+Communiaction=Ethernet
+IP_Address=192.168.0.22
+ETH_Port=5005
+ch1_set=100
+ch2_set=100
+ch3_set=100
+ch1_polarity=Positive
+ch2_polarity=Positive
+ch3_polarity=Positive

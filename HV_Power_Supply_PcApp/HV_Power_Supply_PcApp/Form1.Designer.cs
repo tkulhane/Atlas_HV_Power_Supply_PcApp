@@ -67,8 +67,10 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label_info_voltage_CH3 = new System.Windows.Forms.Label();
             this.numericUpDown_voltage_CH3 = new System.Windows.Forms.NumericUpDown();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.bar_current_CH3 = new Seriak.Bar();
             this.label_current_CH3 = new System.Windows.Forms.Label();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.bar_voltage_CH3 = new Seriak.Bar();
             this.label_voltage_CH3 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -88,8 +90,10 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label_info_voltage_CH2 = new System.Windows.Forms.Label();
             this.numericUpDown_voltage_CH2 = new System.Windows.Forms.NumericUpDown();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.bar_current_CH2 = new Seriak.Bar();
             this.label_current_CH2 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.bar_voltage_CH2 = new Seriak.Bar();
             this.label_voltage_CH2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel_Channel1 = new System.Windows.Forms.Panel();
@@ -109,17 +113,13 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label_info_voltage_CH1 = new System.Windows.Forms.Label();
             this.numericUpDown_voltage_CH1 = new System.Windows.Forms.NumericUpDown();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.bar_current_CH1 = new Seriak.Bar();
             this.label_current_CH1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.bar_voltage_CH1 = new Seriak.Bar();
             this.label_voltage_CH1 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.XserialPort = new System.IO.Ports.SerialPort(this.components);
-            this.bar_current_CH3 = new Seriak.Bar();
-            this.bar_voltage_CH3 = new Seriak.Bar();
-            this.bar_current_CH2 = new Seriak.Bar();
-            this.bar_voltage_CH2 = new Seriak.Bar();
-            this.bar_current_CH1 = new Seriak.Bar();
-            this.bar_voltage_CH1 = new Seriak.Bar();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -173,6 +173,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.button_Calibration.TabIndex = 27;
             this.button_Calibration.Text = "Calib";
             this.button_Calibration.UseVisualStyleBackColor = true;
+            this.button_Calibration.Visible = false;
             this.button_Calibration.Click += new System.EventHandler(this.button_Calibration_Click);
             // 
             // button_LoadSetAllOn
@@ -587,6 +588,18 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Current:";
             // 
+            // bar_current_CH3
+            // 
+            this.bar_current_CH3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.bar_current_CH3.ForeColor = System.Drawing.Color.Blue;
+            this.bar_current_CH3.Location = new System.Drawing.Point(6, 67);
+            this.bar_current_CH3.Max = 120;
+            this.bar_current_CH3.Name = "bar_current_CH3";
+            this.bar_current_CH3.Size = new System.Drawing.Size(194, 18);
+            this.bar_current_CH3.TabIndex = 21;
+            this.bar_current_CH3.Text = "bar6";
+            this.bar_current_CH3.value = 5;
+            // 
             // label_current_CH3
             // 
             this.label_current_CH3.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -612,6 +625,18 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox10.TabIndex = 1;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Voltage:";
+            // 
+            // bar_voltage_CH3
+            // 
+            this.bar_voltage_CH3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.bar_voltage_CH3.ForeColor = System.Drawing.Color.Blue;
+            this.bar_voltage_CH3.Location = new System.Drawing.Point(6, 67);
+            this.bar_voltage_CH3.Max = 500;
+            this.bar_voltage_CH3.Name = "bar_voltage_CH3";
+            this.bar_voltage_CH3.Size = new System.Drawing.Size(194, 18);
+            this.bar_voltage_CH3.TabIndex = 21;
+            this.bar_voltage_CH3.Text = "bar5";
+            this.bar_voltage_CH3.value = 50;
             // 
             // label_voltage_CH3
             // 
@@ -846,6 +871,18 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Current:";
             // 
+            // bar_current_CH2
+            // 
+            this.bar_current_CH2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.bar_current_CH2.ForeColor = System.Drawing.Color.Blue;
+            this.bar_current_CH2.Location = new System.Drawing.Point(6, 67);
+            this.bar_current_CH2.Max = 120;
+            this.bar_current_CH2.Name = "bar_current_CH2";
+            this.bar_current_CH2.Size = new System.Drawing.Size(194, 18);
+            this.bar_current_CH2.TabIndex = 21;
+            this.bar_current_CH2.Text = "bar4";
+            this.bar_current_CH2.value = 5;
+            // 
             // label_current_CH2
             // 
             this.label_current_CH2.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -871,6 +908,18 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox7.TabIndex = 1;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Voltage:";
+            // 
+            // bar_voltage_CH2
+            // 
+            this.bar_voltage_CH2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.bar_voltage_CH2.ForeColor = System.Drawing.Color.Blue;
+            this.bar_voltage_CH2.Location = new System.Drawing.Point(6, 67);
+            this.bar_voltage_CH2.Max = 500;
+            this.bar_voltage_CH2.Name = "bar_voltage_CH2";
+            this.bar_voltage_CH2.Size = new System.Drawing.Size(194, 18);
+            this.bar_voltage_CH2.TabIndex = 21;
+            this.bar_voltage_CH2.Text = "bar3";
+            this.bar_voltage_CH2.value = 50;
             // 
             // label_voltage_CH2
             // 
@@ -1105,6 +1154,18 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Current:";
             // 
+            // bar_current_CH1
+            // 
+            this.bar_current_CH1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.bar_current_CH1.ForeColor = System.Drawing.Color.Blue;
+            this.bar_current_CH1.Location = new System.Drawing.Point(6, 67);
+            this.bar_current_CH1.Max = 120;
+            this.bar_current_CH1.Name = "bar_current_CH1";
+            this.bar_current_CH1.Size = new System.Drawing.Size(194, 18);
+            this.bar_current_CH1.TabIndex = 20;
+            this.bar_current_CH1.Text = "bar2";
+            this.bar_current_CH1.value = 5;
+            // 
             // label_current_CH1
             // 
             this.label_current_CH1.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -1130,6 +1191,18 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Voltage:";
+            // 
+            // bar_voltage_CH1
+            // 
+            this.bar_voltage_CH1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.bar_voltage_CH1.ForeColor = System.Drawing.Color.Blue;
+            this.bar_voltage_CH1.Location = new System.Drawing.Point(6, 67);
+            this.bar_voltage_CH1.Max = 500;
+            this.bar_voltage_CH1.Name = "bar_voltage_CH1";
+            this.bar_voltage_CH1.Size = new System.Drawing.Size(194, 18);
+            this.bar_voltage_CH1.TabIndex = 19;
+            this.bar_voltage_CH1.Text = "bar1";
+            this.bar_voltage_CH1.value = 50;
             // 
             // label_voltage_CH1
             // 
@@ -1161,78 +1234,6 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             this.XserialPort.BaudRate = 38400;
             this.XserialPort.WriteBufferSize = 4096;
-            // 
-            // bar_current_CH3
-            // 
-            this.bar_current_CH3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.bar_current_CH3.ForeColor = System.Drawing.Color.Blue;
-            this.bar_current_CH3.Location = new System.Drawing.Point(6, 67);
-            this.bar_current_CH3.Max = 120;
-            this.bar_current_CH3.Name = "bar_current_CH3";
-            this.bar_current_CH3.Size = new System.Drawing.Size(194, 18);
-            this.bar_current_CH3.TabIndex = 21;
-            this.bar_current_CH3.Text = "bar6";
-            this.bar_current_CH3.value = 5;
-            // 
-            // bar_voltage_CH3
-            // 
-            this.bar_voltage_CH3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.bar_voltage_CH3.ForeColor = System.Drawing.Color.Blue;
-            this.bar_voltage_CH3.Location = new System.Drawing.Point(6, 67);
-            this.bar_voltage_CH3.Max = 500;
-            this.bar_voltage_CH3.Name = "bar_voltage_CH3";
-            this.bar_voltage_CH3.Size = new System.Drawing.Size(194, 18);
-            this.bar_voltage_CH3.TabIndex = 21;
-            this.bar_voltage_CH3.Text = "bar5";
-            this.bar_voltage_CH3.value = 50;
-            // 
-            // bar_current_CH2
-            // 
-            this.bar_current_CH2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.bar_current_CH2.ForeColor = System.Drawing.Color.Blue;
-            this.bar_current_CH2.Location = new System.Drawing.Point(6, 67);
-            this.bar_current_CH2.Max = 120;
-            this.bar_current_CH2.Name = "bar_current_CH2";
-            this.bar_current_CH2.Size = new System.Drawing.Size(194, 18);
-            this.bar_current_CH2.TabIndex = 21;
-            this.bar_current_CH2.Text = "bar4";
-            this.bar_current_CH2.value = 5;
-            // 
-            // bar_voltage_CH2
-            // 
-            this.bar_voltage_CH2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.bar_voltage_CH2.ForeColor = System.Drawing.Color.Blue;
-            this.bar_voltage_CH2.Location = new System.Drawing.Point(6, 67);
-            this.bar_voltage_CH2.Max = 500;
-            this.bar_voltage_CH2.Name = "bar_voltage_CH2";
-            this.bar_voltage_CH2.Size = new System.Drawing.Size(194, 18);
-            this.bar_voltage_CH2.TabIndex = 21;
-            this.bar_voltage_CH2.Text = "bar3";
-            this.bar_voltage_CH2.value = 50;
-            // 
-            // bar_current_CH1
-            // 
-            this.bar_current_CH1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.bar_current_CH1.ForeColor = System.Drawing.Color.Blue;
-            this.bar_current_CH1.Location = new System.Drawing.Point(6, 67);
-            this.bar_current_CH1.Max = 120;
-            this.bar_current_CH1.Name = "bar_current_CH1";
-            this.bar_current_CH1.Size = new System.Drawing.Size(194, 18);
-            this.bar_current_CH1.TabIndex = 20;
-            this.bar_current_CH1.Text = "bar2";
-            this.bar_current_CH1.value = 5;
-            // 
-            // bar_voltage_CH1
-            // 
-            this.bar_voltage_CH1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.bar_voltage_CH1.ForeColor = System.Drawing.Color.Blue;
-            this.bar_voltage_CH1.Location = new System.Drawing.Point(6, 67);
-            this.bar_voltage_CH1.Max = 500;
-            this.bar_voltage_CH1.Name = "bar_voltage_CH1";
-            this.bar_voltage_CH1.Size = new System.Drawing.Size(194, 18);
-            this.bar_voltage_CH1.TabIndex = 19;
-            this.bar_voltage_CH1.Text = "bar1";
-            this.bar_voltage_CH1.value = 50;
             // 
             // Form1
             // 
