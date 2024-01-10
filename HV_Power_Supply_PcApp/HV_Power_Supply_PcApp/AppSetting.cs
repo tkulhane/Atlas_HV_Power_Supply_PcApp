@@ -60,7 +60,15 @@ namespace HV_Power_Supply_GUI_ver._1
 
         public void SettingLoad() 
         {
+            if (!File.Exists(SettingFileName))
+            {
+                //MessageBox.Show("The setting file does not exist.", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             String[] lines = File.ReadAllLines(SettingFileName, Encoding.GetEncoding("Windows-1250"));
+
+            if (lines.Length == 0) return;
 
             sCommunication = string.Empty;
             sComPort = string.Empty;

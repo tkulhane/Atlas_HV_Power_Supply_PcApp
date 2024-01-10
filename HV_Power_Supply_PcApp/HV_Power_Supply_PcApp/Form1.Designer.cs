@@ -30,6 +30,7 @@ namespace HV_Power_Supply_GUI_ver._1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.button_Calibration = new System.Windows.Forms.Button();
             this.button_LoadSetAllOn = new System.Windows.Forms.Button();
@@ -1240,6 +1241,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.ClientSize = new System.Drawing.Size(824, 637);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(840, 676);
             this.MinimumSize = new System.Drawing.Size(840, 676);

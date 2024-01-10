@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Obecné informace o sestavení se řídí přes následující 
 // sadu atributů. Změnou hodnot těchto atributů se upraví informace
 // přidružené k sestavení.
-[assembly: AssemblyTitle("HV_Power_Supply_GUI_ver.1")]
+[assembly: AssemblyTitle("HV_Power_Supply")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HP Inc.")]
-[assembly: AssemblyProduct("HV_Power_Supply_GUI_ver.1")]
-[assembly: AssemblyCopyright("Copyright © HP Inc. 2022")]
+[assembly: AssemblyCompany("ZCU PiLab")]
+[assembly: AssemblyProduct("HV_Power_Supply")]
+[assembly: AssemblyCopyright("Copyright © ZCU PiLab 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
