@@ -9,3 +9,4 @@ C:\CODE_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_P
 C:\CODE_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply_GUI_ver.1.exe
 C:\CODE_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply_GUI_ver.1.pdb
 C:\CODE_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply_GUI_ver._1.ModulSetting_Form.resources
+C:\CODE_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply_GUI_ver._1.Calibration_Form.resources

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,9 @@ namespace HV_Power_Supply_GUI_ver._1
 
         public void UpdateValues() 
         {
+            textBox_mac.Text = _ModulSettingData.macAddress.ToString("X");
+            textBox_recvPort.Text = _ModulSettingData.udpRecvPort.ToString();
+
             textBox_ip.Text = string_from_ip(_ModulSettingData.ipAddress);
             textBox_nm.Text = string_from_ip(_ModulSettingData.netMask);
             textBox_gw.Text = string_from_ip(_ModulSettingData.gateWay);
@@ -61,11 +65,11 @@ namespace HV_Power_Supply_GUI_ver._1
             textBox_ch2_adc_current_q.Text = _ModulSettingData.ch2_adc_current_q.ToString();
             textBox_ch3_adc_current_q.Text = _ModulSettingData.ch3_adc_current_q.ToString();
 
-            textBox_ch1_dac_k.Text = _ModulSettingData.ch2_dac_k.ToString();
+            textBox_ch1_dac_k.Text = _ModulSettingData.ch1_dac_k.ToString();
             textBox_ch2_dac_k.Text = _ModulSettingData.ch2_dac_k.ToString();
             textBox_ch3_dac_k.Text = _ModulSettingData.ch3_dac_k.ToString();
 
-            textBox_ch1_dac_q.Text = _ModulSettingData.ch2_dac_q.ToString();
+            textBox_ch1_dac_q.Text = _ModulSettingData.ch1_dac_q.ToString();
             textBox_ch2_dac_q.Text = _ModulSettingData.ch2_dac_q.ToString();
             textBox_ch3_dac_q.Text = _ModulSettingData.ch3_dac_q.ToString();
 
@@ -79,6 +83,10 @@ namespace HV_Power_Supply_GUI_ver._1
 
         private void SendAll()
         {
+
+            SendUintHex(Communication.eCommandCode.ip_store_mac, textBox_mac);
+            SendUint(Communication.eCommandCode.ip_store_UdpRecvPort, textBox_recvPort);
+
             _FunctionSendData(Communication.eCommandCode.ip_store_myip, ip_from_string(textBox_ip.Text));
             _FunctionSendData(Communication.eCommandCode.ip_store_mymask, ip_from_string(textBox_nm.Text));
             _FunctionSendData(Communication.eCommandCode.ip_store_mygatew, ip_from_string(textBox_gw.Text));
@@ -140,6 +148,30 @@ namespace HV_Power_Supply_GUI_ver._1
             _FunctionSendData(cmd, value32);
         }
 
+        private void SendUintHex(Communication.eCommandCode cmd, TextBox textBox) 
+        {
+            UInt32 value;
+
+            if (!UInt32.TryParse(textBox.Text, NumberStyles.HexNumber, null, out value))
+            {
+                return;
+            }
+
+            _FunctionSendData(cmd, value);
+        }
+
+        private void SendUint(Communication.eCommandCode cmd, TextBox textBox)
+        {
+            UInt32 value;
+
+            if (!UInt32.TryParse(textBox.Text, out value))
+            {
+                return;
+            }
+
+            _FunctionSendData(cmd, value);
+        }
+
         public bool GetBoolFromUint32(UInt32 data) 
         {
             if (data > 0) return true;
@@ -170,7 +202,7 @@ namespace HV_Power_Supply_GUI_ver._1
                 addr = addr | ((x & 0xff) << (3-i)*8);
             }
 
-            MessageBox.Show(addr.ToString(),"", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
 
             return addr;
 
@@ -213,7 +245,7 @@ namespace HV_Power_Supply_GUI_ver._1
         private void button_Save_Click(object sender, EventArgs e)
         {
             SendAll();
-            _FunctionSendData(Communication.eCommandCode.params_default, 0);
+            _FunctionSendData(Communication.eCommandCode.params_store, 0);
         }
 
         private void button_Send_Click(object sender, EventArgs e)

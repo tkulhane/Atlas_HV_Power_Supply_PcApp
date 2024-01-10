@@ -8,9 +8,11 @@ namespace HV_Power_Supply_GUI_ver._1
 {
     class ModulSetting_Data
     {
+        public UInt32 macAddress;
         public UInt32 ipAddress;
         public UInt32 netMask;
         public UInt32 gateWay;
+        public UInt32 udpRecvPort;
 
         public float ch1_adc_voltage_k;
         public float ch2_adc_voltage_k;

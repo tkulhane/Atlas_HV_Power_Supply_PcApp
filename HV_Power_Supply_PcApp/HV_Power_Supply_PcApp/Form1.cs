@@ -20,6 +20,8 @@ namespace HV_Power_Supply_GUI_ver._1
 
         private bool device_connected;
 
+        float[] MeasVoltage = new float[3]; 
+
         public Form1()
         {
             InitializeComponent();
@@ -42,7 +44,9 @@ namespace HV_Power_Supply_GUI_ver._1
             }
 
 
+            communication.SendEndpoint();
             communication.SendCommand(Communication.eCommandCode.Connected, 1);
+            
             device_connected = false;
 
 
@@ -136,6 +140,7 @@ namespace HV_Power_Supply_GUI_ver._1
                 case Communication.eCommandCode.get_voltage_CH1:
                     //label_voltage_CH1.Text = (communication.ReadCommand_Data / (float)100).ToString() + " V";
                     //bar_voltage_CH1.value = (int)(communication.ReadCommand_Data / (float)100);
+                    MeasVoltage[0] = communication.ReadCommand_Data_float;
                     label_voltage_CH1.Text = communication.ReadCommand_Data_float.ToString(".0") + " V";
                     bar_voltage_CH1.value = (int)communication.ReadCommand_Data_float;
                     bar_voltage_CH1.Invalidate();
@@ -143,12 +148,14 @@ namespace HV_Power_Supply_GUI_ver._1
                     break;
 
                 case Communication.eCommandCode.get_voltage_CH2:
+                    MeasVoltage[1] = communication.ReadCommand_Data_float;
                     label_voltage_CH2.Text = communication.ReadCommand_Data_float.ToString(".0") + " V";
                     bar_voltage_CH2.value = (int)communication.ReadCommand_Data_float;
                     bar_voltage_CH2.Invalidate();
                     break;
 
                 case Communication.eCommandCode.get_voltage_CH3:
+                    MeasVoltage[2] = communication.ReadCommand_Data_float;
                     label_voltage_CH3.Text = communication.ReadCommand_Data_float.ToString(".0") + " V";
                     bar_voltage_CH3.value = (int)communication.ReadCommand_Data_float;
                     bar_voltage_CH3.Invalidate();
@@ -280,6 +287,14 @@ namespace HV_Power_Supply_GUI_ver._1
                 case Communication.eCommandCode.dac_get_q2:
                     ModulSettingData.ch3_dac_q = communication.ReadCommand_Data_float;
                     ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.ip_get_mac:
+                    ModulSettingData.macAddress = communication.ReadCommand_Data;
+                    break;
+
+                case Communication.eCommandCode.ip_get_UdpRecvPort:
+                    ModulSettingData.udpRecvPort = communication.ReadCommand_Data;
                     break;
 
                 case Communication.eCommandCode.ip_get_myip:
@@ -430,7 +445,7 @@ namespace HV_Power_Supply_GUI_ver._1
             {
                 int port;
                 if (!int.TryParse(textBox_EthPort.Text, out port)) return;
-                communication.Open_UDP(textBox_IP.Text, port);
+                communication.Open_UDP(textBox_IP.Text, 5005, port);
             }
 
 
@@ -454,7 +469,7 @@ namespace HV_Power_Supply_GUI_ver._1
                 label_SerialStatus.Text = "Open UDP";
 
 
-                communication.SendCommand(Communication.eCommandCode.ip_store_endpoint, 0);
+                communication.SendEndpoint();
                 communication.SendCommand(Communication.eCommandCode.getsetting, 0);           
                 communication.SendCommand(Communication.eCommandCode.ip_getsetting, 0);
 
@@ -507,6 +522,23 @@ namespace HV_Power_Supply_GUI_ver._1
 
 
             }
+        }
+
+        private void button_Calibration_Click(object sender, EventArgs e)
+        {
+            communication.SendCommand(Communication.eCommandCode.adc_getallcoef, 0);
+            communication.SendCommand(Communication.eCommandCode.dac_getallcoef, 0);
+
+            
+            Calibration_Form calibForm = new Calibration_Form();
+
+            calibForm.FunctionSendData = communication.SendCommand;
+            calibForm.FunctionSendData_Float = communication.SendCommand_Float;
+            calibForm.MeasVoltage = MeasVoltage;
+
+            calibForm.Show();
+
+            DialogResult fdr = calibForm.DialogResult;
         }
 
 
@@ -686,5 +718,7 @@ namespace HV_Power_Supply_GUI_ver._1
             communication.SendCommand(Communication.eCommandCode.enable_CH2, 0);
             communication.SendCommand(Communication.eCommandCode.enable_CH3, 0);
         }
+
+
     }
 }

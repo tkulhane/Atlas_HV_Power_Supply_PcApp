@@ -41,13 +41,21 @@ namespace HV_Power_Supply_GUI_ver._1
             getsetting,
             thats_all,
             LED,
+
             ip_store_endpoint,
+
+            ip_store_mac,
             ip_store_myip,
             ip_store_mymask,
             ip_store_mygatew,
+            ip_store_UdpRecvPort,
+
+            ip_get_mac,
             ip_get_myip,
             ip_get_mymask,
             ip_get_mygatew,
+            ip_get_UdpRecvPort,
+
             ip_getsetting,
             adc_set_k0,
             adc_set_k1,
@@ -145,13 +153,23 @@ namespace HV_Power_Supply_GUI_ver._1
     "getsetting",
     "thatsall",
     "LED",
+
     "ip_store_endpoint",
+
+    "ip_store_mac",
+
     "ip_store_myip",
     "ip_store_mymask",
     "ip_store_mygatew",
+    "cmd_ip_store_UdpRecvPort",
+
+    "ip_get_mac",
+
     "ip_get_myip",
     "ip_get_mymask",
     "ip_get_mygatew",
+    "cmd_ip_get_UdpRecvPort",
+
     "ip_getsetting",
     "adc_set_k0",
     "adc_set_k1",
@@ -237,8 +255,12 @@ namespace HV_Power_Supply_GUI_ver._1
         efunction ExecuteFunction;
         private SerialPort serialport;
         private UdpClient udp;
-        private int udpport;
+        
+        private int udpPortSend;
+        private int udpPortRecv;
+
         private IPAddress remoteIp;
+
         private IPEndPoint remoteIpEndPoint;
         private eCommunicationType CommunicationType = eCommunicationType.non;
 
@@ -256,11 +278,17 @@ namespace HV_Power_Supply_GUI_ver._1
             read_timer.Interval = 10;
         }
 
-        public bool Open_UDP(string ipadress, int UDPPort)
+        public void SendEndpoint() 
         {
-            udpport = UDPPort;
+            SendCommand(Communication.eCommandCode.ip_store_endpoint, (uint)udpPortRecv);
+        }
 
-            IPEndPoint localpt = new IPEndPoint(IPAddress.Any, udpport);
+        public bool Open_UDP(string ipadress, int portSend, int portRecv)
+        {
+            udpPortSend = portSend;
+            udpPortRecv = portRecv;
+
+            IPEndPoint localpt = new IPEndPoint(IPAddress.Any, udpPortRecv);
 
             udp = new UdpClient();
             udp.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
@@ -272,8 +300,7 @@ namespace HV_Power_Supply_GUI_ver._1
             {
                 remoteIp = ip;
                 
-                remoteIpEndPoint = new IPEndPoint(remoteIp, UDPPort);
-                //udp.Connect(ip, udpport);
+                remoteIpEndPoint = new IPEndPoint(remoteIp, udpPortSend);
                 udp.BeginReceive(new AsyncCallback(UdpReceive), udp);
                 CommunicationType = eCommunicationType.udp;
                 return true;
@@ -505,8 +532,7 @@ namespace HV_Power_Supply_GUI_ver._1
                 return;
             }
 
-
-            IPEndPoint ipe = new IPEndPoint(IPAddress.Any, 5005); //port 0 je pro vsechny
+            IPEndPoint ipe = new IPEndPoint(IPAddress.Any, 0); //port 0 je pro vsechny
 
             try 
             {
@@ -526,7 +552,6 @@ namespace HV_Power_Supply_GUI_ver._1
                     ProcessLine(s);
                     ExecuteFunction();
                 }
-
 
                 uu.BeginReceive(new AsyncCallback(UdpReceive), uu);
             }

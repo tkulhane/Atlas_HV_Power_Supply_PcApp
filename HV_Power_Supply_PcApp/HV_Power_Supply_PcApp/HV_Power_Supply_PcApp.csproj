@@ -67,6 +67,13 @@
     <Compile Include="Bar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Calibration_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Calibration_Form.Designer.cs">
+      <DependentUpon>Calibration_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Calibration_ListData.cs" />
     <Compile Include="ModulSetting_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +90,9 @@
     <Compile Include="ModulSetting_Data.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Calibration_Form.resx">
+      <DependentUpon>Calibration_Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

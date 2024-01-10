@@ -76,6 +76,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.textBox_ch1_dac_k = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.checkBox_ErrorExecuteAutoRestart = new System.Windows.Forms.CheckBox();
             this.checkBox_CtrlOutWithEnable = new System.Windows.Forms.CheckBox();
             this.checkBox_DisableInConnLost = new System.Windows.Forms.CheckBox();
             this.checkBox_EnableErrorExecute = new System.Windows.Forms.CheckBox();
@@ -88,7 +89,10 @@ namespace HV_Power_Supply_GUI_ver._1
             this.button_Save = new System.Windows.Forms.Button();
             this.button_exit = new System.Windows.Forms.Button();
             this.label_test = new System.Windows.Forms.Label();
-            this.checkBox_ErrorExecuteAutoRestart = new System.Windows.Forms.CheckBox();
+            this.textBox_mac = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.textBox_recvPort = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -98,21 +102,21 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ip
             // 
-            this.textBox_ip.Location = new System.Drawing.Point(73, 30);
+            this.textBox_ip.Location = new System.Drawing.Point(73, 50);
             this.textBox_ip.Name = "textBox_ip";
             this.textBox_ip.Size = new System.Drawing.Size(91, 20);
             this.textBox_ip.TabIndex = 1;
             // 
             // textBox_nm
             // 
-            this.textBox_nm.Location = new System.Drawing.Point(73, 56);
+            this.textBox_nm.Location = new System.Drawing.Point(73, 76);
             this.textBox_nm.Name = "textBox_nm";
             this.textBox_nm.Size = new System.Drawing.Size(91, 20);
             this.textBox_nm.TabIndex = 2;
             // 
             // textBox_gw
             // 
-            this.textBox_gw.Location = new System.Drawing.Point(73, 82);
+            this.textBox_gw.Location = new System.Drawing.Point(73, 102);
             this.textBox_gw.Name = "textBox_gw";
             this.textBox_gw.Size = new System.Drawing.Size(91, 20);
             this.textBox_gw.TabIndex = 3;
@@ -120,7 +124,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 34);
+            this.label1.Location = new System.Drawing.Point(12, 54);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 5;
@@ -129,7 +133,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 60);
+            this.label2.Location = new System.Drawing.Point(11, 80);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 6;
@@ -138,7 +142,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 86);
+            this.label3.Location = new System.Drawing.Point(12, 106);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 13);
             this.label3.TabIndex = 7;
@@ -146,6 +150,10 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox_recvPort);
+            this.groupBox1.Controls.Add(this.label23);
+            this.groupBox1.Controls.Add(this.textBox_mac);
+            this.groupBox1.Controls.Add(this.label22);
             this.groupBox1.Controls.Add(this.textBox_gw);
             this.groupBox1.Controls.Add(this.textBox_ip);
             this.groupBox1.Controls.Add(this.label3);
@@ -154,25 +162,25 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(386, 320);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(177, 129);
+            this.groupBox1.Size = new System.Drawing.Size(177, 162);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ethernet";
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox_ch3_adc_voltage_q);
+            this.groupBox2.Controls.Add(this.textBox_ch3_dac_q);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.textBox_ch3_adc_voltage_k);
+            this.groupBox2.Controls.Add(this.textBox_ch3_dac_k);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.textBox_ch2_adc_voltage_q);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.textBox_ch2_adc_voltage_k);
+            this.groupBox2.Controls.Add(this.textBox_ch2_dac_q);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.textBox_ch1_adc_voltage_q);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.textBox_ch1_adc_voltage_k);
+            this.groupBox2.Controls.Add(this.textBox_ch2_dac_k);
             this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.textBox_ch1_dac_k);
+            this.groupBox2.Controls.Add(this.textBox_ch1_dac_q);
             this.groupBox2.Location = new System.Drawing.Point(19, 66);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(177, 235);
@@ -182,7 +190,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch3_adc_voltage_q
             // 
-            this.textBox_ch3_adc_voltage_q.Location = new System.Drawing.Point(59, 178);
+            this.textBox_ch3_adc_voltage_q.Location = new System.Drawing.Point(60, 178);
             this.textBox_ch3_adc_voltage_q.Name = "textBox_ch3_adc_voltage_q";
             this.textBox_ch3_adc_voltage_q.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch3_adc_voltage_q.TabIndex = 16;
@@ -198,7 +206,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch3_adc_voltage_k
             // 
-            this.textBox_ch3_adc_voltage_k.Location = new System.Drawing.Point(59, 152);
+            this.textBox_ch3_adc_voltage_k.Location = new System.Drawing.Point(60, 152);
             this.textBox_ch3_adc_voltage_k.Name = "textBox_ch3_adc_voltage_k";
             this.textBox_ch3_adc_voltage_k.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch3_adc_voltage_k.TabIndex = 14;
@@ -214,7 +222,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch2_adc_voltage_q
             // 
-            this.textBox_ch2_adc_voltage_q.Location = new System.Drawing.Point(59, 114);
+            this.textBox_ch2_adc_voltage_q.Location = new System.Drawing.Point(60, 114);
             this.textBox_ch2_adc_voltage_q.Name = "textBox_ch2_adc_voltage_q";
             this.textBox_ch2_adc_voltage_q.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch2_adc_voltage_q.TabIndex = 12;
@@ -230,7 +238,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch2_adc_voltage_k
             // 
-            this.textBox_ch2_adc_voltage_k.Location = new System.Drawing.Point(59, 88);
+            this.textBox_ch2_adc_voltage_k.Location = new System.Drawing.Point(60, 88);
             this.textBox_ch2_adc_voltage_k.Name = "textBox_ch2_adc_voltage_k";
             this.textBox_ch2_adc_voltage_k.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch2_adc_voltage_k.TabIndex = 10;
@@ -246,7 +254,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch1_adc_voltage_q
             // 
-            this.textBox_ch1_adc_voltage_q.Location = new System.Drawing.Point(59, 50);
+            this.textBox_ch1_adc_voltage_q.Location = new System.Drawing.Point(60, 50);
             this.textBox_ch1_adc_voltage_q.Name = "textBox_ch1_adc_voltage_q";
             this.textBox_ch1_adc_voltage_q.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch1_adc_voltage_q.TabIndex = 8;
@@ -262,7 +270,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch1_adc_voltage_k
             // 
-            this.textBox_ch1_adc_voltage_k.Location = new System.Drawing.Point(59, 24);
+            this.textBox_ch1_adc_voltage_k.Location = new System.Drawing.Point(60, 24);
             this.textBox_ch1_adc_voltage_k.Name = "textBox_ch1_adc_voltage_k";
             this.textBox_ch1_adc_voltage_k.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch1_adc_voltage_k.TabIndex = 6;
@@ -278,18 +286,18 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox_ch3_adc_current_q);
+            this.groupBox3.Controls.Add(this.textBox_ch3_adc_voltage_q);
             this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.textBox_ch3_adc_current_k);
             this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.textBox_ch2_adc_current_q);
             this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Controls.Add(this.textBox_ch2_adc_current_k);
+            this.groupBox3.Controls.Add(this.textBox_ch3_adc_voltage_k);
             this.groupBox3.Controls.Add(this.label13);
-            this.groupBox3.Controls.Add(this.textBox_ch1_adc_current_q);
             this.groupBox3.Controls.Add(this.label14);
-            this.groupBox3.Controls.Add(this.textBox_ch1_adc_current_k);
             this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.textBox_ch2_adc_voltage_q);
+            this.groupBox3.Controls.Add(this.textBox_ch2_adc_voltage_k);
+            this.groupBox3.Controls.Add(this.textBox_ch1_adc_voltage_q);
+            this.groupBox3.Controls.Add(this.textBox_ch1_adc_voltage_k);
             this.groupBox3.Location = new System.Drawing.Point(203, 66);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(177, 235);
@@ -299,7 +307,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch3_adc_current_q
             // 
-            this.textBox_ch3_adc_current_q.Location = new System.Drawing.Point(59, 178);
+            this.textBox_ch3_adc_current_q.Location = new System.Drawing.Point(60, 179);
             this.textBox_ch3_adc_current_q.Name = "textBox_ch3_adc_current_q";
             this.textBox_ch3_adc_current_q.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch3_adc_current_q.TabIndex = 16;
@@ -315,7 +323,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch3_adc_current_k
             // 
-            this.textBox_ch3_adc_current_k.Location = new System.Drawing.Point(59, 152);
+            this.textBox_ch3_adc_current_k.Location = new System.Drawing.Point(60, 153);
             this.textBox_ch3_adc_current_k.Name = "textBox_ch3_adc_current_k";
             this.textBox_ch3_adc_current_k.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch3_adc_current_k.TabIndex = 14;
@@ -331,7 +339,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch2_adc_current_q
             // 
-            this.textBox_ch2_adc_current_q.Location = new System.Drawing.Point(59, 114);
+            this.textBox_ch2_adc_current_q.Location = new System.Drawing.Point(60, 115);
             this.textBox_ch2_adc_current_q.Name = "textBox_ch2_adc_current_q";
             this.textBox_ch2_adc_current_q.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch2_adc_current_q.TabIndex = 12;
@@ -347,7 +355,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch2_adc_current_k
             // 
-            this.textBox_ch2_adc_current_k.Location = new System.Drawing.Point(59, 88);
+            this.textBox_ch2_adc_current_k.Location = new System.Drawing.Point(60, 89);
             this.textBox_ch2_adc_current_k.Name = "textBox_ch2_adc_current_k";
             this.textBox_ch2_adc_current_k.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch2_adc_current_k.TabIndex = 10;
@@ -363,7 +371,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch1_adc_current_q
             // 
-            this.textBox_ch1_adc_current_q.Location = new System.Drawing.Point(59, 50);
+            this.textBox_ch1_adc_current_q.Location = new System.Drawing.Point(60, 51);
             this.textBox_ch1_adc_current_q.Name = "textBox_ch1_adc_current_q";
             this.textBox_ch1_adc_current_q.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch1_adc_current_q.TabIndex = 8;
@@ -379,7 +387,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch1_adc_current_k
             // 
-            this.textBox_ch1_adc_current_k.Location = new System.Drawing.Point(59, 24);
+            this.textBox_ch1_adc_current_k.Location = new System.Drawing.Point(60, 25);
             this.textBox_ch1_adc_current_k.Name = "textBox_ch1_adc_current_k";
             this.textBox_ch1_adc_current_k.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch1_adc_current_k.TabIndex = 6;
@@ -395,18 +403,18 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.textBox_ch3_dac_q);
+            this.groupBox4.Controls.Add(this.textBox_ch3_adc_current_q);
             this.groupBox4.Controls.Add(this.label16);
-            this.groupBox4.Controls.Add(this.textBox_ch3_dac_k);
             this.groupBox4.Controls.Add(this.label17);
-            this.groupBox4.Controls.Add(this.textBox_ch2_dac_q);
             this.groupBox4.Controls.Add(this.label18);
-            this.groupBox4.Controls.Add(this.textBox_ch2_dac_k);
+            this.groupBox4.Controls.Add(this.textBox_ch3_adc_current_k);
             this.groupBox4.Controls.Add(this.label19);
-            this.groupBox4.Controls.Add(this.textBox_ch1_dac_q);
             this.groupBox4.Controls.Add(this.label20);
-            this.groupBox4.Controls.Add(this.textBox_ch1_dac_k);
             this.groupBox4.Controls.Add(this.label21);
+            this.groupBox4.Controls.Add(this.textBox_ch2_adc_current_q);
+            this.groupBox4.Controls.Add(this.textBox_ch1_adc_current_k);
+            this.groupBox4.Controls.Add(this.textBox_ch1_adc_current_q);
+            this.groupBox4.Controls.Add(this.textBox_ch2_adc_current_k);
             this.groupBox4.Location = new System.Drawing.Point(386, 66);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(177, 235);
@@ -416,7 +424,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch3_dac_q
             // 
-            this.textBox_ch3_dac_q.Location = new System.Drawing.Point(59, 178);
+            this.textBox_ch3_dac_q.Location = new System.Drawing.Point(61, 178);
             this.textBox_ch3_dac_q.Name = "textBox_ch3_dac_q";
             this.textBox_ch3_dac_q.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch3_dac_q.TabIndex = 16;
@@ -432,7 +440,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch3_dac_k
             // 
-            this.textBox_ch3_dac_k.Location = new System.Drawing.Point(59, 152);
+            this.textBox_ch3_dac_k.Location = new System.Drawing.Point(61, 152);
             this.textBox_ch3_dac_k.Name = "textBox_ch3_dac_k";
             this.textBox_ch3_dac_k.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch3_dac_k.TabIndex = 14;
@@ -448,7 +456,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch2_dac_q
             // 
-            this.textBox_ch2_dac_q.Location = new System.Drawing.Point(59, 114);
+            this.textBox_ch2_dac_q.Location = new System.Drawing.Point(61, 114);
             this.textBox_ch2_dac_q.Name = "textBox_ch2_dac_q";
             this.textBox_ch2_dac_q.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch2_dac_q.TabIndex = 12;
@@ -464,7 +472,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch2_dac_k
             // 
-            this.textBox_ch2_dac_k.Location = new System.Drawing.Point(59, 88);
+            this.textBox_ch2_dac_k.Location = new System.Drawing.Point(61, 88);
             this.textBox_ch2_dac_k.Name = "textBox_ch2_dac_k";
             this.textBox_ch2_dac_k.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch2_dac_k.TabIndex = 10;
@@ -480,7 +488,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch1_dac_q
             // 
-            this.textBox_ch1_dac_q.Location = new System.Drawing.Point(59, 50);
+            this.textBox_ch1_dac_q.Location = new System.Drawing.Point(61, 50);
             this.textBox_ch1_dac_q.Name = "textBox_ch1_dac_q";
             this.textBox_ch1_dac_q.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch1_dac_q.TabIndex = 8;
@@ -496,7 +504,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // textBox_ch1_dac_k
             // 
-            this.textBox_ch1_dac_k.Location = new System.Drawing.Point(59, 24);
+            this.textBox_ch1_dac_k.Location = new System.Drawing.Point(61, 24);
             this.textBox_ch1_dac_k.Name = "textBox_ch1_dac_k";
             this.textBox_ch1_dac_k.Size = new System.Drawing.Size(90, 20);
             this.textBox_ch1_dac_k.TabIndex = 6;
@@ -522,6 +530,16 @@ namespace HV_Power_Supply_GUI_ver._1
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Config";
+            // 
+            // checkBox_ErrorExecuteAutoRestart
+            // 
+            this.checkBox_ErrorExecuteAutoRestart.AutoSize = true;
+            this.checkBox_ErrorExecuteAutoRestart.Location = new System.Drawing.Point(13, 95);
+            this.checkBox_ErrorExecuteAutoRestart.Name = "checkBox_ErrorExecuteAutoRestart";
+            this.checkBox_ErrorExecuteAutoRestart.Size = new System.Drawing.Size(152, 17);
+            this.checkBox_ErrorExecuteAutoRestart.TabIndex = 3;
+            this.checkBox_ErrorExecuteAutoRestart.Text = "Auto Restart Error Execute";
+            this.checkBox_ErrorExecuteAutoRestart.UseVisualStyleBackColor = true;
             // 
             // checkBox_CtrlOutWithEnable
             // 
@@ -564,7 +582,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // button_LoadDefault
             // 
-            this.button_LoadDefault.Location = new System.Drawing.Point(20, 478);
+            this.button_LoadDefault.Location = new System.Drawing.Point(20, 511);
             this.button_LoadDefault.Name = "button_LoadDefault";
             this.button_LoadDefault.Size = new System.Drawing.Size(75, 35);
             this.button_LoadDefault.TabIndex = 15;
@@ -584,7 +602,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // button_Send
             // 
-            this.button_Send.Location = new System.Drawing.Point(227, 478);
+            this.button_Send.Location = new System.Drawing.Point(227, 511);
             this.button_Send.Name = "button_Send";
             this.button_Send.Size = new System.Drawing.Size(75, 35);
             this.button_Send.TabIndex = 17;
@@ -613,7 +631,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // button_Save
             // 
-            this.button_Save.Location = new System.Drawing.Point(146, 478);
+            this.button_Save.Location = new System.Drawing.Point(146, 511);
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(75, 35);
             this.button_Save.TabIndex = 20;
@@ -623,7 +641,7 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // button_exit
             // 
-            this.button_exit.Location = new System.Drawing.Point(488, 478);
+            this.button_exit.Location = new System.Drawing.Point(488, 511);
             this.button_exit.Name = "button_exit";
             this.button_exit.Size = new System.Drawing.Size(75, 35);
             this.button_exit.TabIndex = 21;
@@ -640,21 +658,43 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label_test.TabIndex = 23;
             this.label_test.Text = "label_test";
             // 
-            // checkBox_ErrorExecuteAutoRestart
+            // textBox_mac
             // 
-            this.checkBox_ErrorExecuteAutoRestart.AutoSize = true;
-            this.checkBox_ErrorExecuteAutoRestart.Location = new System.Drawing.Point(13, 95);
-            this.checkBox_ErrorExecuteAutoRestart.Name = "checkBox_ErrorExecuteAutoRestart";
-            this.checkBox_ErrorExecuteAutoRestart.Size = new System.Drawing.Size(152, 17);
-            this.checkBox_ErrorExecuteAutoRestart.TabIndex = 3;
-            this.checkBox_ErrorExecuteAutoRestart.Text = "Auto Restart Error Execute";
-            this.checkBox_ErrorExecuteAutoRestart.UseVisualStyleBackColor = true;
+            this.textBox_mac.Location = new System.Drawing.Point(73, 24);
+            this.textBox_mac.Name = "textBox_mac";
+            this.textBox_mac.Size = new System.Drawing.Size(91, 20);
+            this.textBox_mac.TabIndex = 8;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(12, 28);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(33, 13);
+            this.label22.TabIndex = 9;
+            this.label22.Text = "MAC:";
+            // 
+            // textBox_recvPort
+            // 
+            this.textBox_recvPort.Location = new System.Drawing.Point(73, 128);
+            this.textBox_recvPort.Name = "textBox_recvPort";
+            this.textBox_recvPort.Size = new System.Drawing.Size(91, 20);
+            this.textBox_recvPort.TabIndex = 10;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(12, 132);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(58, 13);
+            this.label23.TabIndex = 11;
+            this.label23.Text = "Recv Port:";
             // 
             // ModulSetting_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 529);
+            this.ClientSize = new System.Drawing.Size(584, 561);
             this.Controls.Add(this.label_test);
             this.Controls.Add(this.button_exit);
             this.Controls.Add(this.button_Save);
@@ -751,5 +791,9 @@ namespace HV_Power_Supply_GUI_ver._1
         private System.Windows.Forms.Button button_exit;
         private System.Windows.Forms.Label label_test;
         private System.Windows.Forms.CheckBox checkBox_ErrorExecuteAutoRestart;
+        private System.Windows.Forms.TextBox textBox_mac;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox textBox_recvPort;
+        private System.Windows.Forms.Label label23;
     }
 }
