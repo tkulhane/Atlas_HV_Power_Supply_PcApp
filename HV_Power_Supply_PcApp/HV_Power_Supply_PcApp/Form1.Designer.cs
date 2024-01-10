@@ -31,11 +31,12 @@ namespace HV_Power_Supply_GUI_ver._1
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button_Calibration = new System.Windows.Forms.Button();
             this.button_LoadSetAllOn = new System.Windows.Forms.Button();
             this.button_AllOff = new System.Windows.Forms.Button();
             this.button_AllOn = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_SaveSetting = new System.Windows.Forms.Button();
+            this.button_LoadSetting = new System.Windows.Forms.Button();
             this.button_ModulSetting = new System.Windows.Forms.Button();
             this.label_debug = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -112,8 +113,6 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label_voltage_CH1 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.XserialPort = new System.IO.Ports.SerialPort(this.components);
-            this.timer_req = new System.Windows.Forms.Timer(this.components);
-            this.button_Calibration = new System.Windows.Forms.Button();
             this.bar_current_CH3 = new Seriak.Bar();
             this.bar_voltage_CH3 = new Seriak.Bar();
             this.bar_current_CH2 = new Seriak.Bar();
@@ -153,8 +152,8 @@ namespace HV_Power_Supply_GUI_ver._1
             this.panel1.Controls.Add(this.button_LoadSetAllOn);
             this.panel1.Controls.Add(this.button_AllOff);
             this.panel1.Controls.Add(this.button_AllOn);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.button_SaveSetting);
+            this.panel1.Controls.Add(this.button_LoadSetting);
             this.panel1.Controls.Add(this.button_ModulSetting);
             this.panel1.Controls.Add(this.label_debug);
             this.panel1.Controls.Add(this.groupBox2);
@@ -163,6 +162,17 @@ namespace HV_Power_Supply_GUI_ver._1
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(824, 73);
             this.panel1.TabIndex = 0;
+            // 
+            // button_Calibration
+            // 
+            this.button_Calibration.Location = new System.Drawing.Point(541, 11);
+            this.button_Calibration.Margin = new System.Windows.Forms.Padding(2);
+            this.button_Calibration.Name = "button_Calibration";
+            this.button_Calibration.Size = new System.Drawing.Size(38, 26);
+            this.button_Calibration.TabIndex = 27;
+            this.button_Calibration.Text = "Calib";
+            this.button_Calibration.UseVisualStyleBackColor = true;
+            this.button_Calibration.Click += new System.EventHandler(this.button_Calibration_Click);
             // 
             // button_LoadSetAllOn
             // 
@@ -209,25 +219,27 @@ namespace HV_Power_Supply_GUI_ver._1
             this.button_AllOn.UseVisualStyleBackColor = true;
             this.button_AllOn.Click += new System.EventHandler(this.button_AllOn_Click);
             // 
-            // button2
+            // button_SaveSetting
             // 
-            this.button2.Location = new System.Drawing.Point(358, 39);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(86, 26);
-            this.button2.TabIndex = 23;
-            this.button2.Text = "Save Setting";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button_SaveSetting.Location = new System.Drawing.Point(358, 39);
+            this.button_SaveSetting.Margin = new System.Windows.Forms.Padding(2);
+            this.button_SaveSetting.Name = "button_SaveSetting";
+            this.button_SaveSetting.Size = new System.Drawing.Size(86, 26);
+            this.button_SaveSetting.TabIndex = 23;
+            this.button_SaveSetting.Text = "Save Setting";
+            this.button_SaveSetting.UseVisualStyleBackColor = true;
+            this.button_SaveSetting.Click += new System.EventHandler(this.button_SaveSetting_Click);
             // 
-            // button1
+            // button_LoadSetting
             // 
-            this.button1.Location = new System.Drawing.Point(358, 11);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 26);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Load Setting";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button_LoadSetting.Location = new System.Drawing.Point(358, 11);
+            this.button_LoadSetting.Margin = new System.Windows.Forms.Padding(2);
+            this.button_LoadSetting.Name = "button_LoadSetting";
+            this.button_LoadSetting.Size = new System.Drawing.Size(86, 26);
+            this.button_LoadSetting.TabIndex = 22;
+            this.button_LoadSetting.Text = "Load Setting";
+            this.button_LoadSetting.UseVisualStyleBackColor = true;
+            this.button_LoadSetting.Click += new System.EventHandler(this.button_LoadSetting_Click);
             // 
             // button_ModulSetting
             // 
@@ -1146,23 +1158,8 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // XserialPort
             // 
-            this.XserialPort.BaudRate = 115200;
-            // 
-            // timer_req
-            // 
-            this.timer_req.Interval = 200;
-            this.timer_req.Tick += new System.EventHandler(this.timer_req_Tick);
-            // 
-            // button_Calibration
-            // 
-            this.button_Calibration.Location = new System.Drawing.Point(541, 11);
-            this.button_Calibration.Margin = new System.Windows.Forms.Padding(2);
-            this.button_Calibration.Name = "button_Calibration";
-            this.button_Calibration.Size = new System.Drawing.Size(38, 26);
-            this.button_Calibration.TabIndex = 27;
-            this.button_Calibration.Text = "Calib";
-            this.button_Calibration.UseVisualStyleBackColor = true;
-            this.button_Calibration.Click += new System.EventHandler(this.button_Calibration_Click);
+            this.XserialPort.BaudRate = 38400;
+            this.XserialPort.WriteBufferSize = 4096;
             // 
             // bar_current_CH3
             // 
@@ -1248,6 +1245,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.MinimumSize = new System.Drawing.Size(840, 676);
             this.Name = "Form1";
             this.Text = "High Voltage Power Supply";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.panel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -1355,9 +1353,8 @@ namespace HV_Power_Supply_GUI_ver._1
         private System.Windows.Forms.TextBox textBox_IP;
         private System.Windows.Forms.RadioButton radioButton_UDP;
         private System.Windows.Forms.RadioButton radioButton_Serial;
-        private System.Windows.Forms.Timer timer_req;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_SaveSetting;
+        private System.Windows.Forms.Button button_LoadSetting;
         private System.Windows.Forms.Button button_AllOff;
         private System.Windows.Forms.Button button_AllOn;
         private System.Windows.Forms.Button button_LoadSetAllOn;

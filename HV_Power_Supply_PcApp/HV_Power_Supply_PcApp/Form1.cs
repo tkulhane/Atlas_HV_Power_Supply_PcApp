@@ -16,9 +16,11 @@ namespace HV_Power_Supply_GUI_ver._1
         ModulSetting_Form ModulSettingForm;
         ModulSetting_Data ModulSettingData = new ModulSetting_Data();
 
+        AppSetting appSetting = new AppSetting();
+
         Communication communication;
 
-        private bool device_connected;
+        
 
         float[] MeasVoltage = new float[3]; 
 
@@ -26,30 +28,63 @@ namespace HV_Power_Supply_GUI_ver._1
         {
             InitializeComponent();
             communication = new Communication(XserialPort, ExecuteCommand);
+
+            communication.comboBox_SerialPorts = comboBoxPorts;
+            communication.textBox_ipAdress = textBox_IP;
+            communication.textBox_ethPorts = textBox_EthPort;
+            communication.radioButton_Serial = radioButton_Serial;
+            communication.radioButton_Udp = radioButton_UDP;
+            communication.label_Status = label_SerialStatus;
+            communication.button_PortScan = button_PortScan;
+
+            communication.RequestTimerFunction = timer_req_Tick;
+
+            appSetting.communication = communication;
+            appSetting.NumericUpDown_setVoltages[0] = numericUpDown_voltage_CH1;
+            appSetting.NumericUpDown_setVoltages[1] = numericUpDown_voltage_CH2;
+            appSetting.NumericUpDown_setVoltages[2] = numericUpDown_voltage_CH3;
+            appSetting.RadioButton_polarityPositive[0] = radioButton_positive_CH1;
+            appSetting.RadioButton_polarityPositive[1] = radioButton_positive_CH2;
+            appSetting.RadioButton_polarityPositive[2] = radioButton_positive_CH3;
+            appSetting.RadioButton_polarityNegative[0] = radioButton_negative_CH1;
+            appSetting.RadioButton_polarityNegative[1] = radioButton_negative_CH2;
+            appSetting.RadioButton_polarityNegative[2] = radioButton_negative_CH3;
+
+
+            appSetting.SettingLoad();
         }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            appSetting.SettingSave();
+        }
+
+        //-------------------------------------------------------------------------------------------------------------------
+        //app setting
+        //-------------------------------------------------------------------------------------------------------------------
+        private void button_LoadSetting_Click(object sender, EventArgs e)
+        {
+            appSetting.SettingLoad();
+        }
+
+        private void button_SaveSetting_Click(object sender, EventArgs e)
+        {
+            appSetting.SettingSave();
+        }
+
+
+
 
         //-------------------------------------------------------------------------------------------------------------------
         //Reguest timer
         //-------------------------------------------------------------------------------------------------------------------
         int timer_setting = 0;
-        private void timer_req_Tick(object sender, EventArgs e)
+        private void timer_req_Tick()
         {
-            if (device_connected)
-            {
-                label_SerialStatus.BackColor = Color.Green;
-            }
-            else
-            {
-                label_SerialStatus.BackColor = Color.Red;
-            }
-
 
             communication.SendEndpoint();
-            communication.SendCommand(Communication.eCommandCode.Connected, 1);
             
-            device_connected = false;
-
-
+          
             communication.SendCommand(Communication.eCommandCode.getallvalues, 0);
 
             if (timer_setting >= 5)
@@ -74,7 +109,7 @@ namespace HV_Power_Supply_GUI_ver._1
                     break;
 
                 case Communication.eCommandCode.Connected:
-                    if (communication.ReadCommand_Data == 1) device_connected = true;
+                    if (communication.ReadCommand_Data == 1) communication.DeviceConnected();
                     break;
 
 
@@ -382,117 +417,17 @@ namespace HV_Power_Supply_GUI_ver._1
        //scan serial
         private void button_PortScan_Click(object sender, EventArgs e)
         {
-            comboBoxPorts.Items.Clear();
-
-            foreach (String s in communication.GetPortNames())
-            {
-                comboBoxPorts.Items.Add(s);
-            }
-
-
-            if (comboBoxPorts.Items.Count > 0)
-            {
-                comboBoxPorts.SelectedIndex = 0;
-            }
-
-            if (communication.IsOpen())
-            {
-                label_SerialStatus.Text = "Open";
-            }
-            else
-            {
-                label_SerialStatus.Text = "Close";
-            }
+            communication.scanSerialPorts();
 
         }
 
         //open/close serial port
         private void button_OpenClose_Click(object sender, EventArgs e)
         {
-            Communication.eCommunicationType comm = communication.GetCommunicationType();
-
-            if(comm == Communication.eCommunicationType.serial) 
-            {
-                communication.Close_Serial();
-                label_SerialStatus.Text = "Close";
-                timer_req.Enabled = false;
-                //timer_Read.Enabled = false;
-                CommunicationControlEnable(true);
-                return;
-            }
-
-            else if(comm == Communication.eCommunicationType.udp) 
-            {
-                communication.Close_UDP();
-                label_SerialStatus.Text = "Close";
-                timer_req.Enabled = false;
-                CommunicationControlEnable(true);
-                return;
-            }
-            
-
-            if (radioButton_Serial.Checked == true) 
-            {
-                if (comboBoxPorts.SelectedIndex < 0)
-                {
-                    MessageBox.Show("Nevybran port", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                communication.Open_Serial(comboBoxPorts.SelectedItem as String);
-            }         
-            else if(radioButton_UDP.Checked == true) 
-            {
-                int port;
-                if (!int.TryParse(textBox_EthPort.Text, out port)) return;
-                communication.Open_UDP(textBox_IP.Text, 5005, port);
-            }
-
-
-            comm = communication.GetCommunicationType();
-
-            if (comm == Communication.eCommunicationType.serial)
-            {
-                label_SerialStatus.Text = "Open Serial";
-
-                communication.SendCommand(Communication.eCommandCode.getsetting, 0);
-                communication.SendCommand(Communication.eCommandCode.ip_getsetting, 0);
-
-                timer_req.Interval = 400;
-                timer_req.Enabled = true;
-
-                CommunicationControlEnable(false);
-
-            }
-            else if (comm == Communication.eCommunicationType.udp)
-            {
-                label_SerialStatus.Text = "Open UDP";
-
-
-                communication.SendEndpoint();
-                communication.SendCommand(Communication.eCommandCode.getsetting, 0);           
-                communication.SendCommand(Communication.eCommandCode.ip_getsetting, 0);
-
-                timer_req.Interval = 200;
-                timer_req.Enabled = true;
-
-                CommunicationControlEnable(false);
-            }
-            else 
-            {
-                label_SerialStatus.Text = "Close";
-                CommunicationControlEnable(true);
-            }
+            communication.OpenClose();
         }
 
-        private void CommunicationControlEnable(bool Enable) 
-        {
-            radioButton_UDP.Enabled = Enable;
-            radioButton_Serial.Enabled = Enable;
-            button_PortScan.Enabled = Enable;
-            comboBoxPorts.Enabled = Enable;
-            textBox_IP.Enabled = Enable;
-        }
+
 
 
 
@@ -718,6 +653,10 @@ namespace HV_Power_Supply_GUI_ver._1
             communication.SendCommand(Communication.eCommandCode.enable_CH2, 0);
             communication.SendCommand(Communication.eCommandCode.enable_CH3, 0);
         }
+
+
+
+
 
 
     }

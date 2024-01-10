@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.IO.Ports;
 using System.Linq;
@@ -249,6 +250,17 @@ namespace HV_Power_Supply_GUI_ver._1
         };
 
 
+        public ComboBox comboBox_SerialPorts;
+        public TextBox textBox_ipAdress;
+        public TextBox textBox_ethPorts;
+        public RadioButton radioButton_Serial;
+        public RadioButton radioButton_Udp;
+        public Label label_Status;
+        public Button button_PortScan;
+
+        internal delegate void efunction_Timer();
+        public efunction_Timer RequestTimerFunction;
+
         Timer read_timer = new Timer();
 
         public delegate void efunction();
@@ -264,7 +276,13 @@ namespace HV_Power_Supply_GUI_ver._1
         private IPEndPoint remoteIpEndPoint;
         private eCommunicationType CommunicationType = eCommunicationType.non;
 
+        public string serialPortName;
+        public string remoteIpAddress;
+        public int remoteEthPort;
 
+        Timer timer_req = new Timer();
+
+        private bool device_connected;
 
         public Communication(SerialPort serialport, efunction f)
         {
@@ -276,7 +294,124 @@ namespace HV_Power_Supply_GUI_ver._1
 
             read_timer.Tick += new System.EventHandler(SerialReadCommand);
             read_timer.Interval = 10;
+
+            timer_req.Tick += new System.EventHandler(RequestTimerHandler);
+            timer_req.Interval = 400;
         }
+
+
+
+        public void OpenClose() 
+        {
+            Communication.eCommunicationType comm = GetCommunicationType();
+
+            if (comm == Communication.eCommunicationType.serial)
+            {
+                Close_Serial();
+                label_Status.Text = "Close";
+                timer_req.Enabled = false;
+                //timer_Read.Enabled = false;
+                CommunicationControlEnable(true);
+                return;
+            }
+
+            else if (comm == Communication.eCommunicationType.udp)
+            {
+                Close_UDP();
+                label_Status.Text = "Close";
+                timer_req.Enabled = false;
+                CommunicationControlEnable(true);
+                return;
+            }
+
+
+            if (radioButton_Serial.Checked == true)
+            {
+                if (comboBox_SerialPorts.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Nevybran port", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                Open_Serial(comboBox_SerialPorts.SelectedItem as String);
+            }
+            else if (radioButton_Udp.Checked == true)
+            {
+                int port;
+                if (!int.TryParse(textBox_ethPorts.Text, out port)) return;
+                Open_UDP(textBox_ipAdress.Text, 5005, port);
+            }
+
+
+            comm = GetCommunicationType();
+
+            if (comm == Communication.eCommunicationType.serial)
+            {
+                label_Status.Text = "Open Serial";
+
+                SendCommand(Communication.eCommandCode.getsetting, 0);
+                SendCommand(Communication.eCommandCode.ip_getsetting, 0);
+
+                timer_req.Interval = 400;
+                timer_req.Enabled = true;
+
+                CommunicationControlEnable(false);
+
+            }
+            else if (comm == Communication.eCommunicationType.udp)
+            {
+                label_Status.Text = "Open UDP";
+
+
+                SendEndpoint();
+                SendCommand(Communication.eCommandCode.getsetting, 0);
+                SendCommand(Communication.eCommandCode.ip_getsetting, 0);
+
+                timer_req.Interval = 200;
+                timer_req.Enabled = true;
+
+                CommunicationControlEnable(false);
+            }
+            else
+            {
+                label_Status.Text = "Close";
+                label_Status.BackColor = SystemColors.ActiveCaption;
+                CommunicationControlEnable(true);
+            }
+        }
+
+        private void CommunicationControlEnable(bool Enable)
+        {
+            radioButton_Udp.Enabled = Enable;
+            radioButton_Serial.Enabled = Enable;
+            button_PortScan.Enabled = Enable;
+            comboBox_SerialPorts.Enabled = Enable;
+            textBox_ipAdress.Enabled = Enable;
+            textBox_ethPorts.Enabled = Enable;
+        }
+
+        private void RequestTimerHandler(object sender, EventArgs e)
+        {
+            RequestTimerFunction();
+
+            if (device_connected)
+            {
+                label_Status.BackColor = Color.Green;
+            }
+            else
+            {
+                label_Status.BackColor = Color.Red;
+            }
+
+            SendCommand(Communication.eCommandCode.Connected, 1);
+
+        }
+
+        public void DeviceConnected() 
+        {
+            device_connected = true;
+        }
+
 
         public void SendEndpoint() 
         {
@@ -299,7 +434,10 @@ namespace HV_Power_Supply_GUI_ver._1
             if (IPAddress.TryParse(ipadress, out ip))
             {
                 remoteIp = ip;
-                
+
+                remoteIpAddress = ipadress;
+                remoteEthPort = portRecv;
+
                 remoteIpEndPoint = new IPEndPoint(remoteIp, udpPortSend);
                 udp.BeginReceive(new AsyncCallback(UdpReceive), udp);
                 CommunicationType = eCommunicationType.udp;
@@ -324,6 +462,33 @@ namespace HV_Power_Supply_GUI_ver._1
             return SerialPort.GetPortNames();
         }
 
+        public void scanSerialPorts() 
+        {
+            comboBox_SerialPorts.Items.Clear();
+
+            foreach (String s in SerialPort.GetPortNames())
+            {
+                comboBox_SerialPorts.Items.Add(s);
+            }
+
+
+            if (comboBox_SerialPorts.Items.Count > 0)
+            {
+                comboBox_SerialPorts.SelectedIndex = 0;
+            }
+
+            /*
+            if (comboBox_SerialPorts.IsOpen())
+            {
+                label_SerialStatus.Text = "Open";
+            }
+            else
+            {
+                comboBox_SerialPorts.Text = "Close";
+            }
+            */
+        }
+
         public bool Open_Serial(string name)
         {
             serialport.PortName = name;
@@ -332,6 +497,7 @@ namespace HV_Power_Supply_GUI_ver._1
             {
                 serialport.Open();
                 CommunicationType = eCommunicationType.serial;
+                serialPortName = name;
                 read_timer.Enabled = true;
                 return true;
             }
@@ -360,6 +526,52 @@ namespace HV_Power_Supply_GUI_ver._1
         public eCommunicationType GetCommunicationType()
         {
             return CommunicationType;
+        }
+
+        public void OpenSerialSetting(string portSerial)
+        {
+
+            radioButton_Serial.Checked = true;
+            radioButton_Udp.Checked = false;
+
+            scanSerialPorts();
+
+            int Selected = -1;
+            int count = comboBox_SerialPorts.Items.Count;
+            for (int i = 0; (i <= (count - 1)); i++)
+            {
+                comboBox_SerialPorts.SelectedIndex = i;
+                string port = comboBox_SerialPorts.SelectedItem as String;
+
+                if (portSerial.Equals(port))
+                {
+                    Selected = i;
+                    
+                }
+
+            }
+
+            if (Selected >= 0)
+            {
+                comboBox_SerialPorts.SelectedIndex = Selected;
+                OpenClose();
+                return;
+            }
+
+            comboBox_SerialPorts.SelectedIndex = Selected = -1;
+
+            
+        }
+
+        public void OpenUdpSetting(string ip, string port) 
+        {
+            radioButton_Serial.Checked = false;
+            radioButton_Udp.Checked = true;
+
+            textBox_ipAdress.Text = ip;
+            textBox_ethPorts.Text = port;
+
+            OpenClose();
         }
 
         public void SendCommand(eCommandCode Command, UInt32 Data)
