@@ -1,7 +1,7 @@
 Communiaction=Non
-ch1_set=25
-ch2_set=25
-ch3_set=25
+ch1_set=30
+ch2_set=30
+ch3_set=30
 ch1_polarity=Positive
 ch2_polarity=Positive
 ch3_polarity=Positive

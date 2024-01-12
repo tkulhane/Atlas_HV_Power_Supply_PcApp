@@ -1,4 +1,3 @@
-C:\CODE_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\bin\Debug\HV_Power_Supply_GUI_ver.1.exe
 C:\CODE_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply_PcApp.csproj.AssemblyReference.cache
 C:\CODE_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply_GUI_ver._1.Form1.resources
 C:\CODE_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply_GUI_ver._1.Properties.Resources.resources
