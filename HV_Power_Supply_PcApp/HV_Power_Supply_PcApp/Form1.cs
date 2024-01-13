@@ -371,6 +371,10 @@ namespace HV_Power_Supply_GUI_ver._1
                     ModulSettingFormUpdate();
                     break;
 
+                case Communication.eCommandCode.CfgGet_EnableAdaptiveVoltTune:
+                    ModulSettingData.EnableAdaptiveVoltageTune = communication.ReadCommand_Data;
+                    break;
+
                 default: 
                     break;
 

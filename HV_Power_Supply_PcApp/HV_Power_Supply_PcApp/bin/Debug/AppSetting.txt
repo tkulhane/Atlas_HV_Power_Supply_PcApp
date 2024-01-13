@@ -1,9 +1,9 @@
 Communiaction=Ethernet
-IP_Address=192.168.0.23
-ETH_Port=5005
-ch1_set=30
-ch2_set=30
-ch3_set=30
+IP_Address=192.168.0.13
+ETH_Port=5013
+ch1_set=200
+ch2_set=200
+ch3_set=200
 ch1_polarity=Positive
 ch2_polarity=Positive
 ch3_polarity=Positive

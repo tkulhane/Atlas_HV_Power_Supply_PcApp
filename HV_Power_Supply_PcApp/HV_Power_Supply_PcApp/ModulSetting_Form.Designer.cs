@@ -93,6 +93,7 @@ namespace HV_Power_Supply_GUI_ver._1
             this.button_Save = new System.Windows.Forms.Button();
             this.button_exit = new System.Windows.Forms.Button();
             this.label_test = new System.Windows.Forms.Label();
+            this.checkBox_AdaptiveVoltTune = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -552,13 +553,14 @@ namespace HV_Power_Supply_GUI_ver._1
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.checkBox_AdaptiveVoltTune);
             this.groupBox5.Controls.Add(this.checkBox_ErrorExecuteAutoRestart);
             this.groupBox5.Controls.Add(this.checkBox_CtrlOutWithEnable);
             this.groupBox5.Controls.Add(this.checkBox_DisableInConnLost);
             this.groupBox5.Controls.Add(this.checkBox_EnableErrorExecute);
             this.groupBox5.Location = new System.Drawing.Point(20, 320);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(177, 129);
+            this.groupBox5.Size = new System.Drawing.Size(177, 162);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Config";
@@ -690,6 +692,16 @@ namespace HV_Power_Supply_GUI_ver._1
             this.label_test.TabIndex = 23;
             this.label_test.Text = "label_test";
             // 
+            // checkBox_AdaptiveVoltTune
+            // 
+            this.checkBox_AdaptiveVoltTune.AutoSize = true;
+            this.checkBox_AdaptiveVoltTune.Location = new System.Drawing.Point(13, 118);
+            this.checkBox_AdaptiveVoltTune.Name = "checkBox_AdaptiveVoltTune";
+            this.checkBox_AdaptiveVoltTune.Size = new System.Drawing.Size(117, 17);
+            this.checkBox_AdaptiveVoltTune.TabIndex = 4;
+            this.checkBox_AdaptiveVoltTune.Text = "Adaptive Volt Tune";
+            this.checkBox_AdaptiveVoltTune.UseVisualStyleBackColor = true;
+            // 
             // ModulSetting_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -795,5 +807,6 @@ namespace HV_Power_Supply_GUI_ver._1
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox textBox_recvPort;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.CheckBox checkBox_AdaptiveVoltTune;
     }
 }

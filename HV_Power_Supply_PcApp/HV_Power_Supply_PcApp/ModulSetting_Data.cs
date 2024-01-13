@@ -43,6 +43,10 @@ namespace HV_Power_Supply_GUI_ver._1
         public UInt32 DisableInConnLost;
         public UInt32 CtrlOutWithEnable;
         public UInt32 ErrorExecuteAutoRestart;
+        public UInt32 EnableAdaptiveVoltageTune;
+
+        public UInt32 VoltageRamp_VoltStep;
+        public UInt32 VoltageRamp_TimeStep;
 
         public ModulSetting_Data()
         {

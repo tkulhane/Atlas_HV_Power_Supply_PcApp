@@ -114,12 +114,21 @@ namespace HV_Power_Supply_GUI_ver._1
             CfgSet_DisableInConnLost,
             CfgSet_CtrlOutWithChEnable,
             CfgSet_ErrorExecuteAutoRestart,
+            CfgSet_EnableAdaptiveVoltTune,
 
             CfgGet_EnableErrorExecute,
             CfgGet_DisableInConnLost,
             CfgGet_CtrlOutWithChEnable,
             CfgGet_ErrorExecuteAutoRestart,
+            CfgGet_EnableAdaptiveVoltTune,
+
             Cfg_Get,
+
+            voltRamp_set_volt,
+            voltRamp_set_time,
+            voltRamp_get_volt,
+            voltRamp_get_time,
+            voltRamp_get_setting,
 
             params_store,
             params_default,
@@ -228,13 +237,21 @@ namespace HV_Power_Supply_GUI_ver._1
     "CfgSet_DisableInConnLost",
     "CfgSet_CtrlOutWithChEnable",
     "CfgSet_ErrorExecuteAutoRestart",
+    "CfgSet_EnableAdaptiveVoltTune",
 
     "CfgGet_EnableErrorExecute",
     "CfgGet_DisableInConnLost",
     "CfgGet_CtrlOutWithChEnable",
     "CfgGet_ErrorExecuteAutoRestart",
+    "CfgGet_EnableAdaptiveVoltTune",
 
     "Cfg_Get",
+
+    "voltRamp_set_volt",
+    "voltRamp_set_time",
+    "voltRamp_get_volt",
+    "voltRamp_get_time",
+    "voltRamp_get_setting",
 
     "params_store",
     "params_default",

@@ -77,7 +77,7 @@ namespace HV_Power_Supply_GUI_ver._1
             checkBox_DisableInConnLost.Checked = GetBoolFromUint32(_ModulSettingData.DisableInConnLost);
             checkBox_CtrlOutWithEnable.Checked = GetBoolFromUint32(_ModulSettingData.CtrlOutWithEnable);
             checkBox_ErrorExecuteAutoRestart.Checked = GetBoolFromUint32(_ModulSettingData.ErrorExecuteAutoRestart);
-
+            checkBox_AdaptiveVoltTune.Checked = GetBoolFromUint32(_ModulSettingData.EnableAdaptiveVoltageTune);
 
         }
 
@@ -117,6 +117,7 @@ namespace HV_Power_Supply_GUI_ver._1
             SendBool(Communication.eCommandCode.CfgSet_DisableInConnLost, checkBox_DisableInConnLost.Checked);
             SendBool(Communication.eCommandCode.CfgSet_CtrlOutWithChEnable, checkBox_CtrlOutWithEnable.Checked);
             SendBool(Communication.eCommandCode.CfgSet_ErrorExecuteAutoRestart, checkBox_ErrorExecuteAutoRestart.Checked);
+            SendBool(Communication.eCommandCode.CfgSet_EnableAdaptiveVoltTune, checkBox_AdaptiveVoltTune.Checked);
 
 
         }
