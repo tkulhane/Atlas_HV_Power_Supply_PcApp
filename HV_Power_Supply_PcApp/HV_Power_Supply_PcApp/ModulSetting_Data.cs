@@ -8,7 +8,8 @@ namespace HV_Power_Supply_GUI_ver._1
 {
     class ModulSetting_Data
     {
-        public UInt32 macAddress;
+        public UInt32 macAddress_1;
+        public UInt32 macAddress_2;
         public UInt32 ipAddress;
         public UInt32 netMask;
         public UInt32 gateWay;

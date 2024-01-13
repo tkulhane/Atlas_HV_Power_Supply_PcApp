@@ -1,4 +1,6 @@
-Communiaction=Non
+Communiaction=Ethernet
+IP_Address=192.168.0.23
+ETH_Port=5005
 ch1_set=30
 ch2_set=30
 ch3_set=30

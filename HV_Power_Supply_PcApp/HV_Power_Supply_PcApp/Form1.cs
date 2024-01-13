@@ -324,8 +324,12 @@ namespace HV_Power_Supply_GUI_ver._1
                     ModulSettingFormUpdate();
                     break;
 
-                case Communication.eCommandCode.ip_get_mac:
-                    ModulSettingData.macAddress = communication.ReadCommand_Data;
+                case Communication.eCommandCode.ip_get_mac_1:
+                    ModulSettingData.macAddress_1 = communication.ReadCommand_Data;
+                    break;
+
+                case Communication.eCommandCode.ip_get_mac_2:
+                    ModulSettingData.macAddress_2 = communication.ReadCommand_Data;
                     break;
 
                 case Communication.eCommandCode.ip_get_UdpRecvPort:

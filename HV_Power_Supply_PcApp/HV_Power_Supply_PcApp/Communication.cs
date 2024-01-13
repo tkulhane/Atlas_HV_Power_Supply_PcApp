@@ -45,13 +45,15 @@ namespace HV_Power_Supply_GUI_ver._1
 
             ip_store_endpoint,
 
-            ip_store_mac,
+            ip_store_mac_1,
+            ip_store_mac_2,
             ip_store_myip,
             ip_store_mymask,
             ip_store_mygatew,
             ip_store_UdpRecvPort,
 
-            ip_get_mac,
+            ip_get_mac_1,
+            ip_get_mac_2,
             ip_get_myip,
             ip_get_mymask,
             ip_get_mygatew,
@@ -157,15 +159,15 @@ namespace HV_Power_Supply_GUI_ver._1
 
     "ip_store_endpoint",
 
-    "ip_store_mac",
-
+    "ip_store_mac_1",
+    "ip_store_mac_2",
     "ip_store_myip",
     "ip_store_mymask",
     "ip_store_mygatew",
     "cmd_ip_store_UdpRecvPort",
 
-    "ip_get_mac",
-
+    "ip_get_mac_1",
+    "ip_get_mac_2",
     "ip_get_myip",
     "ip_get_mymask",
     "ip_get_mygatew",
@@ -312,6 +314,7 @@ namespace HV_Power_Supply_GUI_ver._1
                 timer_req.Enabled = false;
                 //timer_Read.Enabled = false;
                 CommunicationControlEnable(true);
+                label_Status.BackColor = SystemColors.ActiveCaption;
                 return;
             }
 
@@ -321,6 +324,7 @@ namespace HV_Power_Supply_GUI_ver._1
                 label_Status.Text = "Close";
                 timer_req.Enabled = false;
                 CommunicationControlEnable(true);
+                label_Status.BackColor = SystemColors.ActiveCaption;
                 return;
             }
 
@@ -376,6 +380,7 @@ namespace HV_Power_Supply_GUI_ver._1
             {
                 label_Status.Text = "Close";
                 label_Status.BackColor = SystemColors.ActiveCaption;
+                timer_req.Enabled = false;
                 CommunicationControlEnable(true);
             }
         }
@@ -402,6 +407,8 @@ namespace HV_Power_Supply_GUI_ver._1
             {
                 label_Status.BackColor = Color.Red;
             }
+
+            device_connected = false;
 
             SendCommand(Communication.eCommandCode.Connected, 1);
 

@@ -44,7 +44,7 @@ namespace HV_Power_Supply_GUI_ver._1
 
         public void UpdateValues() 
         {
-            textBox_mac.Text = _ModulSettingData.macAddress.ToString("X");
+            textBox_mac.Text = string_from_mac(_ModulSettingData.macAddress_1, _ModulSettingData.macAddress_2);   
             textBox_recvPort.Text = _ModulSettingData.udpRecvPort.ToString();
 
             textBox_ip.Text = string_from_ip(_ModulSettingData.ipAddress);
@@ -84,7 +84,8 @@ namespace HV_Power_Supply_GUI_ver._1
         private void SendAll()
         {
 
-            SendUintHex(Communication.eCommandCode.ip_store_mac, textBox_mac);
+            _FunctionSendData(Communication.eCommandCode.ip_store_mac_1, mac_from_string_1(textBox_mac.Text));
+            _FunctionSendData(Communication.eCommandCode.ip_store_mac_2, mac_from_string_2(textBox_mac.Text));
             SendUint(Communication.eCommandCode.ip_store_UdpRecvPort, textBox_recvPort);
 
             _FunctionSendData(Communication.eCommandCode.ip_store_myip, ip_from_string(textBox_ip.Text));
@@ -120,6 +121,83 @@ namespace HV_Power_Supply_GUI_ver._1
 
         }
 
+
+
+        private UInt32 mac_from_string_1(string s)
+        {
+
+            string[] ip_bytes = s.Split('.');
+
+            if (ip_bytes.Length != 6)
+            {
+                MessageBox.Show("Fault: " + s, "FAULT", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
+
+            uint addr = 0;
+            uint x;
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (!UInt32.TryParse(ip_bytes[i], NumberStyles.HexNumber, null, out x))
+                {
+                    MessageBox.Show("Chyba zadání", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return 0;
+                }
+
+                //addr = addr | ((x & 0xff) << (3 - i) * 8);
+                addr = addr | ((x & 0xff) << (2 - i) * 8);
+            }
+
+            return addr;
+        }
+
+        private UInt32 mac_from_string_2(string s)
+        {
+
+            string[] ip_bytes = s.Split('.');
+
+            if (ip_bytes.Length != 6)
+            {
+                MessageBox.Show("Fault: " + s, "FAULT", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
+
+            uint addr = 0;
+            uint x;
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (!UInt32.TryParse(ip_bytes[i + 3], NumberStyles.HexNumber, null, out x))
+                {
+                    MessageBox.Show("Chyba zadání", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return 0;
+                }
+
+                //addr = addr | ((x & 0xff) << (3 - i) * 8);
+                addr = addr | ((x & 0xff) << (2 - i) * 8);
+            }
+
+            return addr;
+        }
+
+        public string string_from_mac(UInt32 mac_1, UInt32 mac_2)
+        {
+            string s = string.Empty;
+            byte[] ip_bytes = new byte[6];
+
+            for (int i = 0; i < 3; i++)
+            {
+                ip_bytes[i + 3] = (byte)(mac_1 >> (i * 8));
+                ip_bytes[i] = (byte)(mac_2 >> (i * 8));
+            }
+
+            s = ip_bytes[5].ToString("X") + "." + ip_bytes[4].ToString("X") + "." + ip_bytes[3].ToString("X") + "." + ip_bytes[2].ToString("X") + "." + ip_bytes[1].ToString("X") + "." + ip_bytes[0].ToString("X");
+
+            return s;
+        }
+
+
         private void SendFloat(Communication.eCommandCode cmd, TextBox textBox) 
         {
             float value;
@@ -148,17 +226,6 @@ namespace HV_Power_Supply_GUI_ver._1
             _FunctionSendData(cmd, value32);
         }
 
-        private void SendUintHex(Communication.eCommandCode cmd, TextBox textBox) 
-        {
-            UInt32 value;
-
-            if (!UInt32.TryParse(textBox.Text, NumberStyles.HexNumber, null, out value))
-            {
-                return;
-            }
-
-            _FunctionSendData(cmd, value);
-        }
 
         private void SendUint(Communication.eCommandCode cmd, TextBox textBox)
         {
@@ -184,7 +251,7 @@ namespace HV_Power_Supply_GUI_ver._1
 
             if(ip_bytes.Length != 4) 
             {
-                MessageBox.Show("Chyba zadání", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fault: " + s, "FAULT", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return 0;
             }
 
@@ -202,11 +269,7 @@ namespace HV_Power_Supply_GUI_ver._1
                 addr = addr | ((x & 0xff) << (3-i)*8);
             }
 
-            
-
-            return addr;
-
-            
+            return addr;      
         }
 
         public string string_from_ip(uint ip) 
