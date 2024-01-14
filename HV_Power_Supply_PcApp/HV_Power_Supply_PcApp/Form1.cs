@@ -373,6 +373,17 @@ namespace HV_Power_Supply_GUI_ver._1
 
                 case Communication.eCommandCode.CfgGet_EnableAdaptiveVoltTune:
                     ModulSettingData.EnableAdaptiveVoltageTune = communication.ReadCommand_Data;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.voltRamp_get_volt:
+                    ModulSettingData.VoltageRamp_VoltStep = communication.ReadCommand_Data;
+                    ModulSettingFormUpdate();
+                    break;
+
+                case Communication.eCommandCode.voltRamp_get_time:
+                    ModulSettingData.VoltageRamp_TimeStep = communication.ReadCommand_Data;
+                    ModulSettingFormUpdate();
                     break;
 
                 default: 
@@ -450,6 +461,7 @@ namespace HV_Power_Supply_GUI_ver._1
             communication.SendCommand(Communication.eCommandCode.adc_getallcoef, 0);
             communication.SendCommand(Communication.eCommandCode.dac_getallcoef, 0);
             communication.SendCommand(Communication.eCommandCode.Cfg_Get, 0);
+            communication.SendCommand(Communication.eCommandCode.voltRamp_get_setting, 0);
 
             
             ModulSettingForm = new ModulSetting_Form();
@@ -661,11 +673,5 @@ namespace HV_Power_Supply_GUI_ver._1
             communication.SendCommand(Communication.eCommandCode.enable_CH2, 0);
             communication.SendCommand(Communication.eCommandCode.enable_CH3, 0);
         }
-
-
-
-
-
-
     }
 }

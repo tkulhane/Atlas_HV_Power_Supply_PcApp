@@ -79,6 +79,10 @@ namespace HV_Power_Supply_GUI_ver._1
             checkBox_ErrorExecuteAutoRestart.Checked = GetBoolFromUint32(_ModulSettingData.ErrorExecuteAutoRestart);
             checkBox_AdaptiveVoltTune.Checked = GetBoolFromUint32(_ModulSettingData.EnableAdaptiveVoltageTune);
 
+            textBox_voltageRamp_Volt.Text = _ModulSettingData.VoltageRamp_VoltStep.ToString();
+            textBox_voltageRamp_Time.Text = _ModulSettingData.VoltageRamp_TimeStep.ToString();
+
+
         }
 
         private void SendAll()
@@ -119,7 +123,8 @@ namespace HV_Power_Supply_GUI_ver._1
             SendBool(Communication.eCommandCode.CfgSet_ErrorExecuteAutoRestart, checkBox_ErrorExecuteAutoRestart.Checked);
             SendBool(Communication.eCommandCode.CfgSet_EnableAdaptiveVoltTune, checkBox_AdaptiveVoltTune.Checked);
 
-
+            SendUint(Communication.eCommandCode.voltRamp_set_volt, textBox_voltageRamp_Volt);
+            SendUint(Communication.eCommandCode.voltRamp_set_time, textBox_voltageRamp_Time);
         }
 
 
@@ -198,7 +203,6 @@ namespace HV_Power_Supply_GUI_ver._1
             return s;
         }
 
-
         private void SendFloat(Communication.eCommandCode cmd, TextBox textBox) 
         {
             float value;
@@ -226,7 +230,6 @@ namespace HV_Power_Supply_GUI_ver._1
 
             _FunctionSendData(cmd, value32);
         }
-
 
         private void SendUint(Communication.eCommandCode cmd, TextBox textBox)
         {
@@ -294,6 +297,7 @@ namespace HV_Power_Supply_GUI_ver._1
             _FunctionSendData(Communication.eCommandCode.adc_getallcoef, 0);
             _FunctionSendData(Communication.eCommandCode.dac_getallcoef, 0);
             _FunctionSendData(Communication.eCommandCode.Cfg_Get, 0);
+            _FunctionSendData(Communication.eCommandCode.voltRamp_get_setting, 0);
         }
 
         private void button_DeviceReset_Click(object sender, EventArgs e)

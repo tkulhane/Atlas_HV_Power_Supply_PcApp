@@ -10,3 +10,15 @@ C:\CODE_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_P
 C:\CODE_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\bin\Debug\HV_Power_Supply.pdb
 C:\CODE_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply.exe
 C:\CODE_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply.pdb
+\\Mac\Home\Documents\_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\bin\Debug\HV_Power_Supply.exe.config
+\\Mac\Home\Documents\_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\bin\Debug\HV_Power_Supply.exe
+\\Mac\Home\Documents\_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\bin\Debug\HV_Power_Supply.pdb
+\\Mac\Home\Documents\_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply_PcApp.csproj.AssemblyReference.cache
+\\Mac\Home\Documents\_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply_GUI_ver._1.Calibration_Form.resources
+\\Mac\Home\Documents\_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply_GUI_ver._1.Form1.resources
+\\Mac\Home\Documents\_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply_GUI_ver._1.ModulSetting_Form.resources
+\\Mac\Home\Documents\_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply_GUI_ver._1.Properties.Resources.resources
+\\Mac\Home\Documents\_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply_PcApp.csproj.GenerateResource.cache
+\\Mac\Home\Documents\_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply_PcApp.csproj.CoreCompileInputs.cache
+\\Mac\Home\Documents\_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply.exe
+\\Mac\Home\Documents\_temp\Atlas_HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\HV_Power_Supply_PcApp\obj\Debug\HV_Power_Supply.pdb
