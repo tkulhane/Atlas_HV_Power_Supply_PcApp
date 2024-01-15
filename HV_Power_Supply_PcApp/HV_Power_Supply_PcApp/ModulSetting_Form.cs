@@ -307,7 +307,23 @@ namespace HV_Power_Supply_GUI_ver._1
 
         private void button_LoadDefault_Click(object sender, EventArgs e)
         {
-            _FunctionSendData(Communication.eCommandCode.params_default, 0);
+            string message = "Do you want to load the default settings?";
+            string caption = "Default Setting";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result;
+
+            // Displays the MessageBox.
+
+            result = MessageBox.Show(message, caption, buttons);
+
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                // Closes the parent form.
+                _FunctionSendData(Communication.eCommandCode.params_default, 0);
+            }
+
+
+            
         }
 
         private void button_Save_Click(object sender, EventArgs e)
