@@ -14,11 +14,16 @@ namespace HV_Power_Supply_GUI_ver._1
 
         public Communication communication;
 
+        public Label label_Name;
+        public Label label_nameCh1;
+        public Label label_nameCh2;
+        public Label label_nameCh3;
 
         public string sCommunication;
         public string sComPort;
         public string sIpAddress;
         public string sEthPort;
+
 
         public NumericUpDown[] NumericUpDown_setVoltages = new NumericUpDown[3];
         public RadioButton[] RadioButton_polarityPositive = new RadioButton[3];
@@ -38,7 +43,12 @@ namespace HV_Power_Supply_GUI_ver._1
             ch3_set,
             ch1_polarity,
             ch2_polarity,
-            ch3_polarity
+            ch3_polarity,
+
+            Name,
+            ch1_name,
+            ch2_name,
+            ch3_name
         }
 
         string[] SettingStrings =
@@ -54,6 +64,11 @@ namespace HV_Power_Supply_GUI_ver._1
             "ch1_polarity",
             "ch2_polarity",
             "ch3_polarity",
+
+            "Name",
+            "ch1_name",
+            "ch2_name",
+            "ch3_name"
         };
 
 
@@ -145,6 +160,22 @@ namespace HV_Power_Supply_GUI_ver._1
                     setPolarity(2, lineParts[1]);
                     break;
 
+                case eSettingCode.Name:
+                    label_Name.Text = lineParts[1];
+                    break;
+
+                case eSettingCode.ch1_name:
+                    label_nameCh1.Text = lineParts[1];
+                    break;
+
+                case eSettingCode.ch2_name:
+                    label_nameCh2.Text = lineParts[1];
+                    break;
+
+                case eSettingCode.ch3_name:
+                    label_nameCh3.Text = lineParts[1];
+                    break;
+
                 default: 
                     break;
             }
@@ -185,12 +216,30 @@ namespace HV_Power_Supply_GUI_ver._1
         }
         public void SettingSave() 
         {
-            System.IO.File.WriteAllText(SettingFileName, string.Empty);
+
+            try 
+            {
+                System.IO.File.WriteAllText(SettingFileName, string.Empty);
+            }
+            catch 
+            {
+                MessageBox.Show("Unable to save setting.");
+                return;
+            }
+            
 
             using (StreamWriter writer = new StreamWriter(SettingFileName))
             {
 
-                if(communication.GetCommunicationType() == Communication.eCommunicationType.serial) 
+                writer.WriteLine(SettingStrings[(int)eSettingCode.Name] + "=" + label_Name.Text);
+                writer.WriteLine(SettingStrings[(int)eSettingCode.ch1_name] + "=" + label_nameCh1.Text);
+                writer.WriteLine(SettingStrings[(int)eSettingCode.ch2_name] + "=" + label_nameCh2.Text);
+                writer.WriteLine(SettingStrings[(int)eSettingCode.ch3_name] + "=" + label_nameCh3.Text);
+
+
+
+
+                if (communication.GetCommunicationType() == Communication.eCommunicationType.serial) 
                 {
                     writer.WriteLine(SettingStrings[(int)eSettingCode.Communiaction] + "=" + "Serial");
                     writer.WriteLine(SettingStrings[(int)eSettingCode.COM_Port] + "=" + communication.serialPortName);
@@ -232,6 +281,7 @@ namespace HV_Power_Supply_GUI_ver._1
                     }
                 
                 }
+
 
 
 

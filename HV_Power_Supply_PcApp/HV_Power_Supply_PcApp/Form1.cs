@@ -20,7 +20,6 @@ namespace HV_Power_Supply_GUI_ver._1
 
         Communication communication;
 
-        
 
         float[] MeasVoltage = new float[3]; 
 
@@ -40,6 +39,12 @@ namespace HV_Power_Supply_GUI_ver._1
             communication.RequestTimerFunction = timer_req_Tick;
 
             appSetting.communication = communication;
+            
+            appSetting.label_Name = label_Name;
+            appSetting.label_nameCh1 = label_nameCh1;
+            appSetting.label_nameCh2 = label_nameCh2;
+            appSetting.label_nameCh3 = label_nameCh3;
+
             appSetting.NumericUpDown_setVoltages[0] = numericUpDown_voltage_CH1;
             appSetting.NumericUpDown_setVoltages[1] = numericUpDown_voltage_CH2;
             appSetting.NumericUpDown_setVoltages[2] = numericUpDown_voltage_CH3;
@@ -52,6 +57,7 @@ namespace HV_Power_Supply_GUI_ver._1
 
 
             appSetting.SettingLoad();
+
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -114,34 +120,82 @@ namespace HV_Power_Supply_GUI_ver._1
 
 
                 case Communication.eCommandCode.enable_CH1:
-                    if (communication.ReadCommand_Data > 0) label_enable_CH1.Text = "ON";
-                    else label_enable_CH1.Text = "OFF";
+                    if (communication.ReadCommand_Data > 0)
+                    {
+                        label_enable_CH1.Text = "ON";
+                        label_enable_CH1.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        label_enable_CH1.Text = "OFF";
+                        label_enable_CH1.BackColor = Color.Red;
+                    }
                     break;
 
                 case Communication.eCommandCode.enable_CH2:
-                    if (communication.ReadCommand_Data > 0) label_enable_CH2.Text = "ON";
-                    else label_enable_CH2.Text = "OFF";
+                    if (communication.ReadCommand_Data > 0)
+                    {
+                        label_enable_CH2.Text = "ON";
+                        label_enable_CH2.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        label_enable_CH2.Text = "OFF";
+                        label_enable_CH2.BackColor = Color.Red;
+                    }
                     break;
 
                 case Communication.eCommandCode.enable_CH3:
-                    if (communication.ReadCommand_Data > 0) label_enable_CH3.Text = "ON";
-                    else label_enable_CH3.Text = "OFF";
+                    if (communication.ReadCommand_Data > 0)
+                    {
+                        label_enable_CH3.Text = "ON";
+                        label_enable_CH3.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        label_enable_CH3.Text = "OFF";
+                        label_enable_CH3.BackColor = Color.Red;
+                    }
                     break;
 
 
                 case Communication.eCommandCode.output_CH1:
-                    if (communication.ReadCommand_Data > 0) label_output_CH1.Text = "ON";
-                    else label_output_CH1.Text = "OFF";
+                    if (communication.ReadCommand_Data > 0)
+                    {
+                        label_output_CH1.Text = "ON";
+                        label_output_CH1.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        label_output_CH1.Text = "OFF";
+                        label_output_CH1.BackColor = Color.Red;
+                    }
                     break;
 
                 case Communication.eCommandCode.output_CH2:
-                    if (communication.ReadCommand_Data > 0) label_output_CH2.Text = "ON";
-                    else label_output_CH2.Text = "OFF";
+                    if (communication.ReadCommand_Data > 0)
+                    {
+                        label_output_CH2.Text = "ON";
+                        label_output_CH2.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        label_output_CH2.Text = "OFF";
+                        label_output_CH2.BackColor = Color.Red;
+                    }
                     break;
 
                 case Communication.eCommandCode.output_CH3:
-                    if (communication.ReadCommand_Data > 0) label_output_CH3.Text = "ON";
-                    else label_output_CH3.Text = "OFF";
+                    if (communication.ReadCommand_Data > 0)
+                    {
+                        label_output_CH3.Text = "ON";
+                        label_output_CH3.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        label_output_CH3.Text = "OFF";
+                        label_output_CH3.BackColor = Color.Red;
+                    }
                     break;
 
                 case Communication.eCommandCode.polarity_CH1:
